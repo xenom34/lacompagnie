@@ -4,5 +4,6 @@ This project developed by talented students is a card game based on the UNO game
 # Getting started
 This project is using technologies such as WebPack or React. Please make sure to install nodejs beforehand on your computer.
 1. Clone this repository
-2. Execute `npm install`, to install all the dependencies related to the project. A (heavy) "node_modules" directory will appear.
-3. Execute `npm run build`, to run the file compilation and bundling process.
+2. Open a terminal and use `cd` command to access the repo's folder
+3. Execute `npm install`, to install all the dependencies related to the project. A (heavy) "node_modules" directory will appear.
+4. Execute `npm run build`, to run the file compilation and bundling process.
