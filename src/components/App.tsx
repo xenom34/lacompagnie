@@ -5,6 +5,11 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Pop from "./Pop";
 import PopConnexion from "./PopConnexion";
+import Background from "./Background";
+
+
+
+
 
 class App extends React.Component<any, any>{
     render() {
@@ -12,6 +17,7 @@ class App extends React.Component<any, any>{
             <div className="App">
                 <Pop/>
                 <PopConnexion/>
+                <Background/>
 
             </div>
         );
