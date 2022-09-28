@@ -1,6 +1,7 @@
 import React from "react";
 import Popup from "reactjs-popup";
 
+
 class Pop extends React.Component<any, any> {
 
 
@@ -16,7 +17,9 @@ class Pop extends React.Component<any, any> {
     }
 
     handleSubmit(event:any) {
-        alert('SUBMIT: ' + this.state.value);
+        this.users.name = this.state.value;
+        console.log(this.users)
+        alert('SUBMIT: ' + this.users.name);
         event.preventDefault();
         //TODO:FAIRE CONNEXION SERVEUR
     }
@@ -26,6 +29,7 @@ class Pop extends React.Component<any, any> {
         "name" : "Michael",
         "score" : 1000
     }
+
 
     render() {
         return (
@@ -58,7 +62,7 @@ class Pop extends React.Component<any, any> {
                                             Nom :
                                             <input value={this.state.value} onChange={this.handleChange}  type="text" name="name" />
                                         </label>
-                                        <input type="submit" value="Sauvegarder" />
+
                                     </form>
                                     {this.state.value}
                                 </Popup>
