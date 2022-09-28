@@ -3,11 +3,11 @@ import Popup from "reactjs-popup";
 
 
 class PopConnexion extends React.Component<any, any> {
-    private myRef: React.RefObject<any>;
+    private myRef1: React.RefObject<any>;
 
     constructor(props: any) {
         super(props);
-        this.myRef = React.createRef();
+        this.myRef1 = React.createRef();
         this.state = {
             value: ''
         };
@@ -35,7 +35,7 @@ class PopConnexion extends React.Component<any, any> {
     }
 
     closePopup = () => {
-        this.myRef.current.close();
+        this.myRef1.current.close();
     }
 
     render() {
@@ -52,7 +52,7 @@ class PopConnexion extends React.Component<any, any> {
 
                     >
 
-                        <div className="modal" ref={this.myRef}>
+                        <div className="modal" ref={this.myRef1}>
 
                             <button className="close" onClick={this.closePopup}>
                                 &times;
