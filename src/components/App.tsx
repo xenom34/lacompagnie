@@ -7,11 +7,23 @@ import Pop from "./Pop";
 import PopConnexion from "./PopConnexion";
 
 class App extends React.Component<any, any>{
+    private readonly popRef: React.RefObject<any>;
+    private readonly popConnexionRef: React.RefObject<any>;
+
+    constructor(props:any) {
+        super(props);
+
+        this.popRef = React.createRef();
+        this.popConnexionRef = React.createRef();
+
+    }
+
     render() {
         return (
             <div className="App">
-                <Pop/>
-                <PopConnexion/>
+                <header> VEUX-TU JOUER ?</header>
+                <Pop ref={this.popRef} link={this.popRef}/>
+                <PopConnexion ref={this.popConnexionRef}/>
 
             </div>
         );

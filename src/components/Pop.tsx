@@ -4,18 +4,17 @@ import Popup from "reactjs-popup";
 
 class Pop extends React.Component<any, any> {
 
-private myRef: React.RefObject<any>;
+    private myRef: React.RefObject<any>;
 
     constructor(props:any) {
         super(props);
         this.myRef = React.createRef();
+
         this.state = {
             value: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
-
     }
 
     handleSubmit(event:any) {
@@ -33,14 +32,12 @@ private myRef: React.RefObject<any>;
     }
 
     closePopup = ()=> {
-        this.myRef.current.close();
+        this.myRef.current.close()
     }
 
     render() {
         return (
-
             <div className="pop" id="pop1">
-                <header> VEUX-TU JOUER ?</header>
                 <Popup
                     trigger={<button className="foo-button mdc-button">
                         <div className="mdc-button__ripple"></div>
@@ -48,10 +45,8 @@ private myRef: React.RefObject<any>;
                     </button>}
                     modal
                     nested
-
-                >
-
-                        <div className="modal" ref={this.myRef}>
+                    ref={this.myRef}>
+                        <div className="modal">
                             <button className="close" onClick={this.closePopup}>
                                 &times;
                             </button>
@@ -87,7 +82,6 @@ private myRef: React.RefObject<any>;
                                 </button>
                             </div>
                         </div>
-
                 </Popup>
             </div>
               );

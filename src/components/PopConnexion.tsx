@@ -40,7 +40,6 @@ class PopConnexion extends React.Component<any, any> {
 
     render() {
         return (
-            <div>
                 <div className="pop" id="pop2">
                     <Popup
                         trigger={<button className="foo-button mdc-button">
@@ -49,10 +48,10 @@ class PopConnexion extends React.Component<any, any> {
                         </button>}
                         modal
                         nested
-
+                        ref={this.myRef1}
                     >
 
-                        <div className="modal" ref={this.myRef1}>
+                        <div className="modal">
 
                             <button className="close" onClick={this.closePopup}>
                                 &times;
@@ -93,7 +92,6 @@ class PopConnexion extends React.Component<any, any> {
 
                     </Popup>
 
-                </div>
             </div>
         );
 
