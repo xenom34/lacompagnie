@@ -2,11 +2,10 @@ import React from "react";
 import Popup from "reactjs-popup";
 
 
-class Pop extends React.Component<any, any> {
+class PopConnexion extends React.Component<any, any> {
+    private myRef: React.RefObject<any>;
 
-private myRef: React.RefObject<any>;
-
-    constructor(props:any) {
+    constructor(props: any) {
         super(props);
         this.myRef = React.createRef();
         this.state = {
@@ -18,48 +17,51 @@ private myRef: React.RefObject<any>;
 
     }
 
-    handleSubmit(event:any) {
+    handleSubmit(event: any) {
         this.users.name = this.state.value;
         console.log(this.users)
         alert('SUBMIT: ' + this.users.name);
         event.preventDefault();
         //TODO:FAIRE CONNEXION SERVEUR
     }
-    handleChange(event:any) {    this.setState({value: event.target.value});  }
 
-    users = {
-        "name" : "Michael",
-        "score" : 1000
+    handleChange(event: any) {
+        this.setState({value: event.target.value});
     }
 
-    closePopup = ()=> {
+    users = {
+        "name": "Michael",
+        "score": 1000
+    }
+
+    closePopup = () => {
         this.myRef.current.close();
     }
 
     render() {
         return (
+            <div>
+                <div className="pop" id="pop2">
+                    <Popup
+                        trigger={<button className="foo-button mdc-button">
+                            <div className="mdc-button__ripple"></div>
+                            <span className="mdc-button__label">CONNEXION</span>
+                        </button>}
+                        modal
+                        nested
 
-            <div className="pop" id="pop1">
-                <header> VEUX-TU JOUER ?</header>
-                <Popup
-                    trigger={<button className="foo-button mdc-button">
-                        <div className="mdc-button__ripple"></div>
-                        <span className="mdc-button__label">Inscription</span>
-                    </button>}
-                    modal
-                    nested
-
-                >
+                    >
 
                         <div className="modal" ref={this.myRef}>
+
                             <button className="close" onClick={this.closePopup}>
                                 &times;
                             </button>
-                            <div className="header"> Inscription </div>
+                            <div className="header"> CONNEXION</div>
                             <div className="content">
                                 {' '}
                                 Que veux-tu faire ?
-                                <br />
+                                <br/>
                                 Te connecter ou partir ?
                             </div>
                             <div className="actions">
@@ -71,7 +73,8 @@ private myRef: React.RefObject<any>;
                                     <form onSubmit={this.handleSubmit}>
                                         <label>
                                             Nom :
-                                            <input value={this.state.value} onChange={this.handleChange}  type="text" name="name" />
+                                            <input value={this.state.value} onChange={this.handleChange} type="text"
+                                                   name="name"/>
                                         </label>
 
                                     </form>
@@ -88,13 +91,13 @@ private myRef: React.RefObject<any>;
                             </div>
                         </div>
 
-                </Popup>
+                    </Popup>
+
+                </div>
             </div>
-              );
+        );
+
     }
 }
 
-
-
-
-export default Pop;
+export default PopConnexion;
