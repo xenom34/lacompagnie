@@ -14,12 +14,16 @@ import Background from "./Background";
 class App extends React.Component<any, any>{
     render() {
         return (
-            <div className="App">
+            <div className="App" style={{ backgroundImage :'url("https://wallpapercave.com/wp/wp5522841.jpg")',height: "750px", backgroundRepeat: "no-repeat"
+            }}>
+
                 <Pop/>
                 <PopConnexion/>
-                <Background/>
+
+
 
             </div>
+
         );
     }
 }

@@ -7,12 +7,16 @@ import { loadSeaAnemonePreset } from "tsparticles-preset-sea-anemone";
 
 function Background() {
     const options: any = {
-        preset: "seaAnemone",
+        //preset: "seaAnemone",
         particles: {
             move: {
                 speed: 3
             },
         },
+
+
+
+
     };
 
     const initialize = useCallback(async (engine: any) => {
