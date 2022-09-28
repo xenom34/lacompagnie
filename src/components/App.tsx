@@ -10,10 +10,7 @@ class App extends React.Component<any, any>{
         return (
             <div className="App">
                 <Pop/>
-                <button className="foo-button mdc-button">
-                    <div className="mdc-button__ripple"></div>
-                    <span className="mdc-button__label">Button</span>
-                </button>
+
             </div>
         );
     }
