@@ -1,0 +1,8 @@
+@use "@material/theme" with (
+  $primary: #bf1e00,
+  $secondary: #0d0093,
+  $on-primary: #ffffff,
+  $on-secondary: #ffffff,
+);
+@use '@material/button/mdc-button';
+@use '@material/button';
