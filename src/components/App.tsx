@@ -16,10 +16,11 @@ class App extends React.Component<any, any>{
     render() {
         return (
             <div className="App">
-                <Pop/>
-                <PopConnexion/>
-                <Piles/>
-                <ModeNuit/>
+                <Piles>
+                    <Pop/>
+                    <PopConnexion/>
+                    <ModeNuit/>
+                </Piles>
             </div>
 
         );

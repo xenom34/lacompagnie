@@ -11,11 +11,17 @@ const src =
 class Piles extends React.Component<any, any>{
     render() {
         return (
-
-            <video playsInline autoPlay loop muted controls style={{pointerEvents:"none"}} width="100%">
-                <source src={src} type="video/mp4"/>
-
-            </video>
+            <div className={"FamilleVideo"}>
+                <div className="Images">
+                    <img src="assets/images/photos/photo-1.jpg" alt=""/>
+                </div>
+                <div className="Video">
+                    <video autoPlay muted loop>
+                            <source src="https://xenom.altair-studios.fr/video.mp4" type="video/mp4"/>
+                    </video>
+                </div>
+                <div className="overlay-inner bg-dark opacity-50"></div>
+            </div>
 
         );
     }
