@@ -43,6 +43,7 @@
     "@material/theme": "^14.0.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-day-and-night-toggle": "^1.0.18",
     "react-dom": "^18.2.0",
     "react-tsparticles": "^2.3.2",
     "reactjs-popup": "^2.0.5",

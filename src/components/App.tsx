@@ -6,7 +6,8 @@ import 'reactjs-popup/dist/index.css';
 import Pop from "./Pop";
 import PopConnexion from "./PopConnexion";
 import Background from "./Background";
-
+import ModeNuit from "./ModeNuit";
+import Piles from "./Piles";
 
 
 
@@ -14,14 +15,11 @@ import Background from "./Background";
 class App extends React.Component<any, any>{
     render() {
         return (
-            <div className="App" style={{ backgroundImage :'url("https://wallpapercave.com/wp/wp5522841.jpg")',height: "750px", backgroundRepeat: "no-repeat"
-            }}>
-
+            <div className="App">
                 <Pop/>
                 <PopConnexion/>
-
-
-
+                <Piles/>
+                <ModeNuit/>
             </div>
 
         );

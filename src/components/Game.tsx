@@ -3,9 +3,9 @@ import logo from '../img/logo.svg';
 import '../style/App.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import App from "./App";
 
-
+import Background from "./Background";
+import ModeNuit from "./ModeNuit";
 
 
 
@@ -13,12 +13,18 @@ import App from "./App";
 class Game extends React.Component<any, any>{
     render() {
         return (
-            <div className="Game">
-                UNO
+            <div className="App">
+
+
+                <Background/>
+                <ModeNuit/>
+
+
 
             </div>
+
         );
     }
 }
 
-export default App
+export default Game;
