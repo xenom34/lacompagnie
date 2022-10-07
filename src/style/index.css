@@ -1,10 +1,28 @@
+@font-face {
+  font-family: Poppins;
+  src: url("../fonts/Poppins-SemiBold.ttf");
+}
+#searchTitle{
+  text-align: left;
+}
 body {
+  font-family: Poppins, serif;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mdc-card{
+  margin: 2em;
+}
+
+.labelSearch{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 code {
@@ -67,4 +85,17 @@ canvas {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+}
+
+.mdc-text-field{
+  margin: 0 1em 1em;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-wrap: wrap;
+}
+
+.content{
+  flex-grow: 1;
 }

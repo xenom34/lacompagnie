@@ -6,18 +6,16 @@ import 'reactjs-popup/dist/index.css';
 import Pop from "./Pop";
 import PopConnexion from "./PopConnexion";
 import Background from "./Background";
-import Cartes from "./Cartes";
+import Search from "./Search";
+import DropdownChoice from "./DropdownChoice";
 //import reactimg from "../img/reactimg.jpeg"
 
-
-
-
-
 class App extends React.Component<any, any>{
+
     render() {
         return (
             <div className="App">
-                <Cartes/>
+                <Search/>
             </div>
 
         );
