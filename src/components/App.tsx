@@ -18,6 +18,7 @@ import Slider_Items_about from "./Slider_Items_about";
 import Slider_Items from "./Slider_Items";
 import Solutions from "./Solutions";
 import Subscribe from "./Subscribe";
+import {Modal} from "bootstrap";
 
 
 
@@ -48,6 +49,16 @@ class App extends React.Component<any, any>{
     render() {
         return (
             <div className="App">
+                <Loader/>
+                <Navigation/>
+                <Slider_Items/>
+                <Slider_Items_about/>
+                <Solutions/>
+                <Features/>
+                <Services/>
+                <Contact/>
+                <Footer/>
+                <Subscribe/>
 
 
             </div>
