@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 
 
-class Features extends React.Component<any, any>{
+class Services extends React.Component<any, any>{
     render() {
         return (
 <div className="website-slider-item bg-transparent" id="services" data-navbar-slide="navbar-dark">
@@ -73,3 +73,4 @@ class Features extends React.Component<any, any>{
         )
     }
 }
+export default Services;

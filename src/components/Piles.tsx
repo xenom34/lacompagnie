@@ -26,5 +26,5 @@ class Piles extends React.Component<any, any>{
         );
     }
 }
-
 export default Piles;
+

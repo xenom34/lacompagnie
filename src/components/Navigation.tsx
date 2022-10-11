@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 
 
-class Features extends React.Component<any, any>{
+class Navigation extends React.Component<any, any>{
     render() {
         return (
 <nav id="siteNavbar"
@@ -53,3 +53,4 @@ class Features extends React.Component<any, any>{
     }
 
     }
+    export default Navigation;

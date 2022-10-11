@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {Fragment, useCallback} from "react";
 
 
 class Features extends React.Component<any, any>{
@@ -69,3 +69,4 @@ class Features extends React.Component<any, any>{
         )
     }
 }
+export default Features;

@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 
 
-class Features extends React.Component<any, any>{
+class Footer extends React.Component<any, any>{
     render() {
         return (
             <footer className="site-footer py-9 py-lg-12 bg-gray-800 text-gray-400">
@@ -45,3 +45,4 @@ class Features extends React.Component<any, any>{
     }
 
 }
+export default Footer;

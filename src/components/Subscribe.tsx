@@ -41,3 +41,4 @@ class Subscribe extends React.Component<any, any>{
     }
 
 }
+export default Subscribe;

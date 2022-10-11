@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 
 
-class Features extends React.Component<any, any>{
+class Contact extends React.Component<any, any>{
     render() {
         return (
 
@@ -67,3 +67,5 @@ class Features extends React.Component<any, any>{
     )
     }
 }
+
+export default Contact;

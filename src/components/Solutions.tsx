@@ -60,3 +60,4 @@ class Solutions extends React.Component<any, any>{
         )
     }
 }
+export default Solutions;

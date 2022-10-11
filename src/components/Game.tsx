@@ -3,8 +3,6 @@ import logo from '../img/logo.svg';
 import '../style/App.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-
-import Background from "./Background";
 import ModeNuit from "./ModeNuit";
 
 
@@ -15,8 +13,6 @@ class Game extends React.Component<any, any>{
         return (
             <div className="App">
 
-
-                <Background/>
                 <ModeNuit/>
 
 
