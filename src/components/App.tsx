@@ -25,10 +25,11 @@ class App extends React.Component<any, any>{
 
     render() {
         return (
-            <div className="App">
+            <div style={{backgroundColor:"black", color:"white",opacity:0.7}}   className="App">
 
                 <Navigation/>
                 <Slider_Items_Home/>
+                <Footer/>
 
 
 

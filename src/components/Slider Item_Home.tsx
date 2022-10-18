@@ -8,7 +8,7 @@ class Slider_Items_Home extends React.Component<any, any>{
             <div className="website-slider-inner">
 
 
-                <div id="home" className="website-slider-item" data-navbar-slide="navbar-dark">
+                <div id="home" className="website-slider-item" >
                     <div className="overlay overlay-global">
                         <div className="overlay-inner overlay-video">
                             <video autoPlay muted loop>

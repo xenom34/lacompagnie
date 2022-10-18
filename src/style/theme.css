@@ -1,17 +1,3 @@
-/*
-Theme Name: Mileno
-Description: Simple Coming Soon Template
-Author: Erilisdesign
-Theme URI: https://preview.erilisdesign.com/html/mileno
-Author URI: https://themeforest.net/user/erilisdesign
-Version: 1.1.1
-License: https://themeforest.net/licenses/standard
-
-SASS Stylesheet
-*/
-/*------------------------------------------------------
-[Reboot]
-*/
 html,
 body {
   overflow-x: hidden;
@@ -1257,7 +1243,6 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   -webkit-tap-highlight-color: transparent;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  background: #fff;
   transition: opacity 0.4s cubic-bezier(0.5, 0, 0.2, 1) 0s;
   -webkit-user-select: none;
           user-select: none;

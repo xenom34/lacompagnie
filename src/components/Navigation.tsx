@@ -6,7 +6,7 @@ class Navigation extends React.Component<any, any>{
         return (
 <nav id="siteNavbar"
      className="site-navbar site-navbar-transparent navbar navbar-expand-lg navbar-dark bg-white shadow-light-lg site-navbar-absolute py-2"
-     data-navbar-base="navbar-dark" data-navbar-scrolled="navbar-light" data-navbar-toggled="navbar-light">
+    >
 
     <a className="navbar-brand" href="index.html">
     </a>
