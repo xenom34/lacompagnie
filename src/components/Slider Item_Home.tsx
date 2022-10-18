@@ -8,8 +8,7 @@ class Slider_Items_Home extends React.Component<any, any>{
             <div className="website-slider-inner">
 
 
-                <div id="home" className="website-slider-item"  data-navbar-base="navbar-dark" data-navbar-scrolled="navbar-light" data-navbar-toggled="navbar-light">
-
+                <div id="home" className="website-slider-item" data-navbar-slide="navbar-dark">
                     <div className="overlay overlay-global">
                         <div className="overlay-inner overlay-video">
                             <video autoPlay muted loop>
@@ -42,7 +41,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                     </div>
                 </div>
 
-                <div id="about" className="website-slider-item" >
+                <div id="about" className="website-slider-item" data-navbar-slide="navbar-light">
                     <div className="website-slider-item-inner">
 
                         <div className="container text-center">
@@ -91,7 +90,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                 </div>
 
 
-                <div id="portfolio" className="website-slider-item" >
+                <div id="portfolio" className="website-slider-item" data-navbar-slide="navbar-light">
                     <div className="website-slider-item-inner">
 
                         <div className="container text-center">
@@ -235,7 +234,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                 </div>
 
 
-                <div id="solutions" className="website-slider-item" data-navbar-slide="navbar-dark">
+                <div id="solutions" className="website-slider-item" data-navbar-slide="navbar-light">
                     <div className="website-slider-item-inner">
 
                         <div className="container">
@@ -275,7 +274,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                 </div>
 
 
-                <div id="features" className="website-slider-item" data-navbar-slide="navbar-dark">
+                <div id="features" className="website-slider-item" data-navbar-slide="navbar-light">
                     <div className="website-slider-item-inner">
 
                         <div className="container">
@@ -339,7 +338,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                 </div>
 
 
-                <div id="services" className="website-slider-item" data-navbar-slide="navbar-dark">
+                <div id="services" className="website-slider-item" data-navbar-slide="navbar-light">
                     <div className="website-slider-item-inner">
 
                         <div className="container">
@@ -407,7 +406,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                 </div>
 
 
-                <div id="contact" className="website-slider-item" data-navbar-slide="navbar-light" >
+                <div id="contact" className="website-slider-item" data-navbar-slide="navbar-light">
                     <div className="website-slider-item-inner">
 
                         <div className="container text-center">
