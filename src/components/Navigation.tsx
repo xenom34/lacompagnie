@@ -9,8 +9,6 @@ class Navigation extends React.Component<any, any>{
      data-navbar-base="navbar-dark" data-navbar-scrolled="navbar-light" data-navbar-toggled="navbar-light">
 
     <a className="navbar-brand" href="index.html">
-        <img src="assets/images/logo-white.png" alt="" className="navbar-brand-img navbar-brand-img-light"/>
-            <img src="assets/images/logo-dark.png" alt="" className="navbar-brand-img navbar-brand-img-dark"/>
     </a>
 
     <button className="navbar-toggler-alternative" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -45,7 +43,7 @@ class Navigation extends React.Component<any, any>{
 
         <a className="btn btn-white d-block d-lg-inline-block ml-lg-3"
            href="https://themeforest.net/user/erilisdesign/portfolio" target="_blank" rel="noopener nofollow"
-           data-on-navbar-light="btn-primary" data-on-navbar-dark="btn-white">Buy now</a>
+           data-on-navbar-light="btn-primary" data-on-navbar-dark="btn-white">Réservation</a>
 
     </div>
 </nav>

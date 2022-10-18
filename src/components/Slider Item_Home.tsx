@@ -23,9 +23,8 @@ class Slider_Items_Home extends React.Component<any, any>{
                             <div className="row">
                                 <div className="col-lg-10 col-xl-9 mx-auto text-center text-white">
 
-                                    <h1 className="display-4 mb-5">We bulid digital experiences</h1>
-                                    <p className="lead mb-7">A beautiful and easy to use template that lets you create
-                                        the perfect website for your future agency or business.</p>
+                                    <h1 className="display-4 mb-5">Est-ce que vous voulez VOYAGER ?</h1>
+                                    <p className="lead mb-7">Envie de faire une escale en amoureux, seul, en famille ou entre amis ?</p>
                                     <button type="button"
                                             className="btn btn-white d-block d-md-inline-block w-100 w-md-auto mb-3 mb-md-0"
                                             data-toggle="modal" data-target="#subscribeModal">Subscribe
