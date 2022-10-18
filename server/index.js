@@ -1,5 +1,9 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
+app.use(cors({
+    origin: '*',
+}));
 const classes = {
     classes :[{
             classe:"Economy"
@@ -39410,4 +39414,4 @@ app.get('/compagnie/reqAirports', (req,res) => {
 //    const id = parseInt(req.params.id)
 //    const parking = classes.find(parking => parking.id === id)
 //    res.status(200).json(parking)})
-app.listen(3456, "api.cadoul.fr",() => {    console.log("Serveur à l'écoute 3456")})
+app.listen(3456, "",() => {    console.log("Serveur à l'écoute 3456")})

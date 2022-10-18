@@ -27,13 +27,15 @@ class DropdownChoice extends React.Component<any, any>{
         this.menu.open = true;
     }
 
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
+    }
+
     componentDidMount() {
         this.menu = new MDCMenu(document.querySelector('#menu'+this.id) as HTMLElement);
         this.textField = new MDCTextField(document.querySelector('#Dropdown'+this.id) as HTMLElement)
     }
 
     render = () => {
-        console.log(this.content)
         return (
             <div className={"content"} style={{verticalAlign:"bottom"}}>
                 <label onClick={this.showMenu} id={"Dropdown"+this.id} className="mdc-text-field mdc-text-field--outlined mdc-menu-surface--anchor">

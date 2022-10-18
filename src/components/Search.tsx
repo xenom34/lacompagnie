@@ -7,20 +7,25 @@ import {MDCMenu} from "@material/menu";
 import DropdownChoice from "./DropdownChoice";
 import CalendarChoice from "./CalendarChoice";
 import NumbersChoice from "./NumbersChoice";
+import {data} from "autoprefixer";
 
 
 //import reactimg from "../img/reactimg.jpeg"
 
 class Search extends React.Component<any, any>{
     private menu: any;
-    private readonly cabines: Array<String>;
+    private cabines: Array<Object> =[];
 
     constructor(props:any) {
         super(props);
-        this.cabines = ["Economy","Premium Economy","Business","Première"];
+        //this.cabines = ["Economy","Premium Economy","Business","Première"];
+        fetch("http://localhost:3456/compagnie/reqCabines").then((data) =>
+            data.json()
+        ).then((response) =>{this.cabines = response.classes})
     }
 
-    render= () => {
+    render = () => {
+        console.log(this.cabines)
         return (
             <div className="mdc-card">
                 <h1 id={"searchTitle"}>✈️    Acheter un billet</h1>
