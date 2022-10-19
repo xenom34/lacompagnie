@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DayNightToggle from 'react-day-and-night-toggle'
 
-const ModeNuitConst = () => {
+const ModeNuit = () => {
     const [isDarkMode, setIsDarkMode] = useState(false)
     return (
         <DayNightToggle
