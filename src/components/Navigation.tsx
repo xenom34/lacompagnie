@@ -43,7 +43,7 @@ class Navigation extends React.Component<any, any>{
 
         <a className="btn btn-white d-block d-lg-inline-block ml-lg-3"
            href="https://themeforest.net/user/erilisdesign/portfolio" target="_blank" rel="noopener nofollow"
-           data-on-navbar-light="btn-primary" data-on-navbar-dark="btn-white">Réservation</a>
+           data-on-navbar-light="btn-primary" data-on-navbar-dark="btn-white">Connexion</a>
 
     </div>
 </nav>

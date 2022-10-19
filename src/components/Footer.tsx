@@ -1,11 +1,14 @@
 import React, {useCallback} from "react";
+import ModeNuit from "./ModeNuit";
 
 
 class Footer extends React.Component<any, any>{
     render() {
         return (
+
             <footer className="site-footer py-9 py-lg-12 bg-gray-800 text-gray-400">
                 <div className="container">
+                    <ModeNuit/>
                     <div className="row">
                         <div className="col-lg-10 mx-auto text-center">
                             <ul className="list-inline mb-8">
@@ -45,4 +48,5 @@ class Footer extends React.Component<any, any>{
     }
 
 }
+
 export default Footer;

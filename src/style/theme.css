@@ -257,9 +257,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   background-color: rgba(8, 9, 20, 0.05);
 }
 
-/*------------------------------------------------------
-[Buttons]
-*/
+
 .btn {
   font-weight: 600;
   border: 1px solid transparent;
@@ -267,6 +265,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
+  color: white;
 }
 .btn:focus, .btn.focus {
   outline: 0;
@@ -1221,6 +1220,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
 .body-overflow-measure {
   position: relative;
   height: 200vh;
+
 }
 
 .website-slider {
@@ -1228,6 +1228,9 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  background: darkblue;
+  color: white;
+
 }
 
 .website-slider-inner {
@@ -1309,6 +1312,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   z-index: 1030;
+
 }
 
 /* Footer */
@@ -1391,7 +1395,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
 .card-collapse {
   padding: 0;
   transition: 0.2s ease-in-out;
-  background-color: #fff;
+  background-color: #b3d7ff;
 }
 .card-collapse:hover {
   background-color: #f5f7f9;
@@ -1435,7 +1439,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   margin-left: 0;
   line-height: 1.6;
   color: #303342;
-  background-color: #fff;
+
   border: 1px solid #d8dde6;
   cursor: pointer;
   text-align: center;
@@ -1443,7 +1447,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
 }
 .page-link:hover {
   color: #194ae8;
-  background-color: #f5f7f9;
+
   border-color: #d8dde6;
 }
 

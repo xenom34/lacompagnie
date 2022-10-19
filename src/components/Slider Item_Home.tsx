@@ -27,11 +27,11 @@ class Slider_Items_Home extends React.Component<any, any>{
                                     <p className="lead mb-7">Envie de faire une escale en amoureux, seul, en famille ou entre amis ?</p>
                                     <button type="button"
                                             className="btn btn-white d-block d-md-inline-block w-100 w-md-auto mb-3 mb-md-0"
-                                            data-toggle="modal" data-target="#subscribeModal">Subscribe
+                                            data-toggle="modal" data-target="#subscribeModal">Réservation
                                     </button>
                                     <a href="#about"
-                                       className="btn btn-soft-white scrollto d-block d-md-inline-block w-100 w-md-auto ml-md-3">Learn
-                                        more</a>
+                                       className="btn btn-soft-white scrollto d-block d-md-inline-block w-100 w-md-auto ml-md-3"> Disponibilité
+                                        </a>
 
                                 </div>
                             </div>
@@ -44,7 +44,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                     <div className="website-slider-item-inner">
 
                         <div className="container text-center">
-                            <h2 className="h1">About Us</h2>
+                            <h2 className="h1">Les disponibilités</h2>
                             <div className="divider bg-primary mx-auto"></div>
                             <div className="row">
                                 <div className="col-12 col-lg-10 mx-auto">
@@ -52,13 +52,13 @@ class Slider_Items_Home extends React.Component<any, any>{
                                     <div className="d-table mx-auto mb-7">
                                         <div className="nav nav-pills-modern nav-pills-modern-soft-dark justify-content-center rounded" id="about-tab" role="tablist">
                                             <a className="nav-link active" id="tab-forward-tab" data-toggle="pill" href="#tab-forward" role="tab" aria-controls="tab-forward" aria-selected="true">
-                                                Forward
+                                                Où
                                             </a>
                                             <a className="nav-link" id="tab-together-tab" data-toggle="pill" href="#tab-together" role="tab" aria-controls="tab-together" aria-selected="false">
-                                                Together
+                                                Quand
                                             </a>
                                             <a className="nav-link" id="tab-tools-tab" data-toggle="pill" href="#tab-tools" role="tab" aria-controls="tab-tools" aria-selected="false">
-                                                Tools
+                                                Prix
                                             </a>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                                     <div className="tab-content" id="tabContent">
                                         <div className="tab-pane fade show active" id="tab-forward" role="tabpanel" aria-labelledby="tab-forward-tab">
 
-                                            <p>Pellentesque commodo vehicula turpis, suscipit suscipit libero mollis vitae. Ut imperdiet leo in neque interdum efficitur. Nullam non gravida lectus, sit amet cursus sem. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed varius ex sed nisl congue rhoncus. Vestibulum vitae nibh vitae ante pretium efficitur ac vitae nunc. Quisque a imperdiet nulla. Fusce et leo blandit, venenatis libero vitae, fermentum lacus. Integer maximus et arcu vitae scelerisque. Proin molestie pretium nunc, id rutrum nisi tempus commodo. Sed laoreet, mi in facilisis dictum, lacus purus cursus mi, ut condimentum sem justo ac enim. Nulla at magna lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas condimentum a massa ut tincidunt.</p>
+                                            <p> La Compagnie est une entreprise aérienne. </p>
 
                                         </div>
                                         <div className="tab-pane fade" id="tab-together" role="tabpanel" aria-labelledby="tab-together-tab">
@@ -89,148 +89,7 @@ class Slider_Items_Home extends React.Component<any, any>{
                 </div>
 
 
-                <div id="portfolio" className="website-slider-item" data-navbar-slide="navbar-light">
-                    <div className="website-slider-item-inner">
 
-                        <div className="container text-center">
-                            <h2 className="h1">Portfolio</h2>
-                            <div className="divider bg-primary mx-auto"></div>
-                            <p className="mb-7">Trust the professionals</p>
-                            <div className="row mx-n4 mt-n6">
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-1.jpg" data-featherlight="image" data-title="Cliff" data-text="Quisque ultrices non velit sit amet consectetur. Cras turpis dolor, facilisis a nibh non, ullamcorper facilisis mauris.">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-1.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Branding</p>
-                                            <h4 className="h5 text-dark mb-0">Cliff</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="https://www.youtube.com/embed/Gm7FX3WMk3c" data-featherlight="iframe" data-featherlight-iframe-allowfullscreen="true" data-featherlight-iframe-width="1200" data-featherlight-iframe-height="675">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-6.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Design</p>
-                                            <h4 className="h5 text-dark mb-0">Mountains</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-2.jpg" data-featherlight="image">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-2.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Web</p>
-                                            <h4 className="h5 text-dark mb-0">Tropical beach</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-3.jpg" data-featherlight="image">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-3.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Web</p>
-                                            <h4 className="h5 text-dark mb-0">Small islands</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4" data-featherlight-gallery data-featherlight-filter="a">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-7.jpg">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-7.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Design</p>
-                                            <h4 className="h5 text-dark mb-0">Waves</h4>
-                                        </div>
-                                    </a>
-                                    <a className="d-none" href="assets/images/photos/photo-1.jpg"></a>
-                                    <a className="d-none" href="assets/images/photos/photo-2.jpg"></a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-5.jpg" data-featherlight="image">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-5.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Web</p>
-                                            <h4 className="h5 text-dark mb-0">Bridge</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-8.jpg" data-featherlight="image">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-8.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Design</p>
-                                            <h4 className="h5 text-dark mb-0">Workspace</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-4.jpg" data-featherlight="image">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-4.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Branding</p>
-                                            <h4 className="h5 text-dark mb-0">Long river</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4 pt-6 px-4">
-                                    <a className="portfolio-block" href="assets/images/portfolio/portfolio-9.jpg" data-featherlight="image">
-                                        <div className="portfolio-block-media portfolio-block-media-zoom rounded-2x shadow-dark">
-                                            <div className="overlay bg-image-holder bg-cover">
-                                                <img src="assets/images/portfolio/portfolio-9.jpg" alt=""/>
-                                            </div>
-                                        </div>
-                                        <div className="portfolio-block-footer p-0 mt-4">
-                                            <p className="small text-uppercase mb-1 text-gray-400">Branding</p>
-                                            <h4 className="h5 text-dark mb-0">Desert</h4>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
 
 
                 <div id="solutions" className="website-slider-item" data-navbar-slide="navbar-light">
