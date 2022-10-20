@@ -1228,7 +1228,7 @@ select.form-control.form-control-soft-dark:focus::-ms-value {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  background: darkblue;
+  background-color : #b3b7bb;
   color: white;
 
 }
