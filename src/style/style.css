@@ -1,0 +1,39 @@
+@use "@material/theme" with (
+$primary: #5271FF,
+$secondary: #5650FF,
+$on-primary: #ffffff,
+$on-secondary: #ffffff,
+);
+@use '@material/button/mdc-button';
+@use '@material/button';
+@use "@material/card";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+@use "@material/textfield/icon";
+@use "@material/list/mdc-list";
+@use "@material/menu-surface/mdc-menu-surface";
+@use "@material/menu/mdc-menu";
+
+@include textfield.core-styles;
+@include icon.icon-core-styles;
+
+@include card.core-styles;
+@keyframes example {
+    0%   {background-color:red; left:0; top:0;}
+    25%  {background-color:yellow; left:200px; top:0;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0; top:200px;}
+    100% {background-color:red; left:0; top:0;}
+}
+
+#card {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 4s;
+    transition-duration: 800ms;
+}

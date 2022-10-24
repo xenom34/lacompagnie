@@ -1,26 +1,22 @@
 import React from 'react';
 import logo from '../img/logo.svg';
 import '../style/App.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Choix from "./Choix"
+import DropdownChoice from "./DropDownChoice";
+//import reactimg from "../img/reactimg.jpeg"
 
-function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
+class App extends React.Component<any, any>{
+
+    render() {
+        return (
+            <div className="App">
+                <Choix/>
+            </div>
+
+        );
+    }
 }
 
 export default App;
