@@ -34,9 +34,15 @@ class Choix extends React.Component<any, any>{
                     <TextField title={"Nom"} id={"Nom"}/>
                     <TextField title={"Prénom"} />
                     <CalendarChoice title={"Date de Naissance"} restriction={false} />
-                    <TextField title={"Adresse mail"} type ="email" id={"AM"}/>
+                </div>
+                <div className={"labelSearch container"}>
+                    <TextField title={"Adresse mail"} restriction={true}/>
+                </div>
+                    <div className={"labelSearch container"}>
                     <TextField title={"Mot de passe"} id={"MDP"}/>
-                    <TextField title={"Confirmation du MDP"}id={"MDPC"} />
+                    </div>
+                <div className={"labelSearch container"}>
+                <TextField title={"Confirmation du MDP"}id={"MDPC"} />
                 </div>
                 <button style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>

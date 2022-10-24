@@ -15,6 +15,7 @@ $on-secondary: #ffffff,
 @use "@material/list/mdc-list";
 @use "@material/menu-surface/mdc-menu-surface";
 @use "@material/menu/mdc-menu";
+@use "@material/textfield/helper-text";
 
 @include textfield.core-styles;
 @include icon.icon-core-styles;
@@ -27,6 +28,7 @@ $on-secondary: #ffffff,
     75%  {background-color:green; left:0; top:200px;}
     100% {background-color:red; left:0; top:0;}
 }
+@include helper-text.helper-text-core-styles;
 
 #card {
     width: 100px;
