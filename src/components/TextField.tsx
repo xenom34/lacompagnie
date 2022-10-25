@@ -22,6 +22,7 @@ class TextField extends React.Component<any, any>{
         })
         this.helperText = new MDCTextFieldHelperText(document.querySelector('#helperText'+this.id) as HTMLElement);
 
+
     }
     onChange = () =>{
         if(this.props.restriction === true) {
@@ -48,10 +49,10 @@ class TextField extends React.Component<any, any>{
       </span>
       <span className="mdc-notched-outline__trailing"></span>
     </span>
-                    <input onFocus={this.onChange} value={this.value} onChange={this.onChange} type="text" className="mdc-text-field__input"  aria-labelledby="my-label-id" />
+                    <input onFocus={this.onChange} value={this.value} onChange={this.onChange} type={this.props.MDP ===  true ? "password" : "string"} className="mdc-text-field__input"  aria-labelledby="my-label-id" />
                 </label>
                 <div className="mdc-text-field-helper-line">
-                    <div id={'helperText'+this.id} className="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg">
+                    <div id={'helperText'+ this.id} className="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg">
                         Adresse mail invalide
                     </div>
                 </div>
