@@ -9,9 +9,12 @@ class TextField extends React.Component<any, any>{
     private regex = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
     private value: any;
     private helperText: any;
+
+
     constructor(props:any) {
         super(props);
         this.id = TextField.nbComponents++;
+
     }
 
     componentDidMount (){
@@ -25,6 +28,7 @@ class TextField extends React.Component<any, any>{
 
     }
     onChange = () =>{
+
         if(this.props.restriction === true) {
             if (this.regex.test(this.value)) {
                 // @ts-ignore

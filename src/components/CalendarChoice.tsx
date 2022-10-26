@@ -10,6 +10,7 @@ class CalendarChoice extends React.Component<any, any>{
     constructor(props:any) {
         super(props);
         this.id = CalendarChoice.nbComponents++;
+
     }
 
     showMenu = ()=>{

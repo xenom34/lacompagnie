@@ -29,21 +29,15 @@ class Choix extends React.Component<any, any>{
         console.log(this.cabines)
         return (
             <div className="mdc-card">
-                <h1 id={"searchTitle"}>✈️    Inscription</h1>
-                <div className={"labelSearch container"}>
-                    <TextField title={"Nom"} id={"Nom"}/>
-                    <TextField title={"Prénom"} />
-                    <CalendarChoice title={"Date de Naissance"} restriction={false} />
-                </div>
+                <h1 id={"searchTitle"}>✈️    Connexion</h1>
+
                 <div className={"labelSearch container"}>
                     <TextField title={"Adresse mail"} restriction={true}/>
                 </div>
                     <div className={"labelSearch container"}>
-                    <TextField title={"Mot de passe"} MDP={true} />
+                    <TextField title={"Mot de passe"} MDP={true} valueRef={""}/>
                     </div>
-                <div className={"labelSearch container"}>
-                <TextField title={"Confirmation du MDP"} MDP={true} />
-                </div>
+
                 <button style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
                     <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
