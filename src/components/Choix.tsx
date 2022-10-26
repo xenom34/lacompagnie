@@ -9,6 +9,8 @@ import CalendarChoice from "./CalendarChoice";
 import NumbersChoice from "./NumbersChoice";
 import {data} from "autoprefixer";
 import TextField from "./TextField";
+import {MDCDialog} from "@material/dialog";
+
 
 
 //import reactimg from "../img/reactimg.jpeg"
@@ -22,13 +24,17 @@ class Choix extends React.Component<any, any>{
     private AM: String | undefined;
     private ConfMdp: String | undefined;
     private DateN: String | undefined;
+    private dialog: any | undefined;
 
     constructor(props:any) {
         super(props);
-        //this.cabines = ["Economy","Premium Economy","Business","Première"];
         fetch("http://localhost:3456/compagnie/reqCabines").then((data) =>
-            data.json()
-        ).then((response) =>{this.cabines = response.classes})
+            data.json()).then((response) =>{this.cabines = response.classes})
+    }
+
+    componentDidMount() {
+        // @ts-ignore
+        //this.dialog.open()
     }
 
     InscriptionButton= () =>{
@@ -55,6 +61,7 @@ class Choix extends React.Component<any, any>{
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
 
+
     }
 
     setName = (changes:String) =>{
@@ -74,6 +81,9 @@ class Choix extends React.Component<any, any>{
     }
     setDateN = (changes : String) => {
         this.DateN = changes;
+    }
+    onOpen = (event:any) =>{
+        alert('jhugyjfhcgjkiop')
     }
 
     render = () => {
@@ -95,11 +105,12 @@ class Choix extends React.Component<any, any>{
                 <div className={"labelSearch container"}>
                 <TextField setter={this.setConfirmationMdp} title={"Confirmation du MDP"} MDP={true} />
                 </div>
-                <button onClick={this.InscriptionButton} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
+                <button onClick={this.onOpen} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
                     <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
                     <span className="mdc-button__label">Validation</span>
                 </button>
+
             </div>
         );
     }
