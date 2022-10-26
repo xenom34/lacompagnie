@@ -16,6 +16,12 @@ import TextField from "./TextField";
 class Choix extends React.Component<any, any>{
     private menu: any;
     private cabines: Array<Object> =[];
+    private name: String | undefined;
+    private Fname: String | undefined;
+    private Mdp: String | undefined;
+    private AM: String | undefined;
+    private ConfMdp: String | undefined;
+    private DateN: String | undefined;
 
     constructor(props:any) {
         super(props);
@@ -25,26 +31,71 @@ class Choix extends React.Component<any, any>{
         ).then((response) =>{this.cabines = response.classes})
     }
 
+    InscriptionButton= () =>{
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "lName": this.name,
+            "fName": this.Fname,
+            "email": this.AM,
+            "password": this.Mdp,
+            "birtDate": this.DateN
+        });
+
+         var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw
+
+        };
+
+        fetch("https://api.altair-studios.fr:4318/compagnie/auth/register", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+    }
+
+    setName = (changes:String) =>{
+        this.name = changes
+    }
+    setFname = (changes:String) =>{
+        this.Fname = changes
+    }
+    setMdp = (changes : String) => {
+        this.Mdp = changes;
+    }
+    setAM = (changes : String) => {
+        this.AM = changes;
+    }
+    setConfirmationMdp = (changes : String) => {
+        this.ConfMdp = changes;
+    }
+    setDateN = (changes : String) => {
+        this.DateN = changes;
+    }
+
     render = () => {
         console.log(this.cabines)
         return (
             <div className="mdc-card">
                 <h1 id={"searchTitle"}>✈️    Inscription</h1>
                 <div className={"labelSearch container"}>
-                    <TextField title={"Nom"} id={"Nom"}/>
-                    <TextField title={"Prénom"} />
-                    <CalendarChoice title={"Date de Naissance"} restriction={false} />
+                    <TextField setter={this.setName} title={"Nom"} id={"Nom"}/>
+                    <TextField setter={this.setFname} title={"Prénom"} />
+                    <CalendarChoice setter={this.setDateN} title={"Date de Naissance"} restriction={false} />
                 </div>
                 <div className={"labelSearch container"}>
-                    <TextField title={"Adresse mail"} restriction={true}/>
+                    <TextField setter={this.setAM} title={"Adresse mail"} restriction={true}/>
                 </div>
                     <div className={"labelSearch container"}>
-                    <TextField title={"Mot de passe"} MDP={true} />
+                    <TextField setter={this.setMdp} title={"Mot de passe"} MDP={true} />
                     </div>
                 <div className={"labelSearch container"}>
-                <TextField title={"Confirmation du MDP"} MDP={true} />
+                <TextField setter={this.setConfirmationMdp} title={"Confirmation du MDP"} MDP={true} />
                 </div>
-                <button style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
+                <button onClick={this.InscriptionButton} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
                     <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
                     <span className="mdc-button__label">Validation</span>

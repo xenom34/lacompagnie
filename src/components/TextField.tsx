@@ -7,11 +7,11 @@ class TextField extends React.Component<any, any>{
     private textField: MDCTextField | undefined;
     private readonly id: number;
     private regex = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
-    private value: any;
     private helperText: any;
     constructor(props:any) {
         super(props);
         this.id = TextField.nbComponents++;
+        this.state = {}
     }
 
     componentDidMount (){
@@ -24,9 +24,9 @@ class TextField extends React.Component<any, any>{
 
 
     }
-    onChange = () =>{
+    onChange = (event:any) =>{
         if(this.props.restriction === true) {
-            if (this.regex.test(this.value)) {
+            if (this.regex.test(event.target.value as string)) {
                 // @ts-ignore
                 this.textField.valid = true;
             }
@@ -36,6 +36,7 @@ class TextField extends React.Component<any, any>{
                 this.textField.valid = false;
             }
         }
+        this.props.setter(event.target.value)
     }
 
     render() {
@@ -49,7 +50,7 @@ class TextField extends React.Component<any, any>{
       </span>
       <span className="mdc-notched-outline__trailing"></span>
     </span>
-                    <input onFocus={this.onChange} value={this.value} onChange={this.onChange} type={this.props.MDP ===  true ? "password" : "string"} className="mdc-text-field__input"  aria-labelledby="my-label-id" />
+                    <input onFocus={this.onChange} onChange={this.onChange} type={this.props.MDP ===  true ? "password" : "string"} className="mdc-text-field__input"  aria-labelledby="my-label-id" />
                 </label>
                 <div className="mdc-text-field-helper-line">
                     <div id={'helperText'+ this.id} className="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg">

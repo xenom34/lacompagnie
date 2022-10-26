@@ -15,6 +15,10 @@ class CalendarChoice extends React.Component<any, any>{
     showMenu = ()=>{
         //this.menu.open = true;
     }
+    onChange = (event:any) =>{
+        this.props.setter(event.target.value)
+
+    }
 
     componentDidMount() {
         this.textField = new MDCTextField(document.querySelector('#calendar'+this.id) as HTMLElement)
@@ -35,11 +39,11 @@ class CalendarChoice extends React.Component<any, any>{
                         <span className="mdc-notched-outline__trailing"></span>
                       </span>
                 <i id={'calendarIcon'+this.id} className="material-icons mdc-text-field__icon mdc-text-field__icon--leading">event</i>
-                <input className="mdc-text-field__input" type="date" min={this.props.restriction === true ? d.toISOString().substring(0,10) : '01/01/1900'} aria-labelledby="my-label-id"/>
+                <input  onChange={this.onChange}  className="mdc-text-field__input" type="date" min={this.props.restriction === true ? d.toISOString().substring(0,10) : '01/01/1900'} aria-labelledby="my-label-id"/>
             </label>
                 <div className="mdc-text-field-helper-line">
                     <div id={'helperText'+this.id} className="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg">
-                        Adresse mail invalide
+                        Date invalide
                     </div>
                 </div>
             </div>
