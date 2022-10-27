@@ -27,10 +27,9 @@ class TextField extends React.Component<any, any>{
 
 
     }
-    onChange = (event : any) =>{
-
+    onChange = (event:any) =>{
         if(this.props.restriction === true) {
-            if (this.regex.test(this.value)) {
+            if (this.regex.test(event.target.value as string)) {
                 // @ts-ignore
                 this.textField.valid = true;
             }
@@ -38,9 +37,13 @@ class TextField extends React.Component<any, any>{
 
                 // @ts-ignore
                 this.textField.valid = false;
+                this.setState({
+                    message: "Adresse mail invalide"
+                })
             }
         }
-        this.props.setter(event.target.value);
+
+        this.props.setter(event.target.value)
     }
 
     render() {

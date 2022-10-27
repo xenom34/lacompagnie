@@ -72,7 +72,7 @@ class Choix extends React.Component<any, any>{
                     <TextField setter={this.setAm}title={"Adresse mail"} restriction={true}/>
                 </div>
                     <div className={"labelSearch container"}>
-                    <TextField setter={this.setMdp} title={"Mot de passe"} MDP={true} valueRef={""}/>
+                    <TextField setter={this.setMdp} title={"Mot de passe"} MDP={true} />
                     </div>
 
                 <button onClick={this.InscriptionButton} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
