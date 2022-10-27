@@ -10,10 +10,8 @@ import NumbersChoice from "./NumbersChoice";
 import {data} from "autoprefixer";
 import TextField from "./TextField";
 import {MDCDialog} from "@material/dialog";
-
-
-
-//import reactimg from "../img/reactimg.jpeg"
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 class Choix extends React.Component<any, any>{
     private menu: any;
@@ -28,39 +26,42 @@ class Choix extends React.Component<any, any>{
 
     constructor(props:any) {
         super(props);
-        fetch("http://localhost:3456/compagnie/reqCabines").then((data) =>
-            data.json()).then((response) =>{this.cabines = response.classes})
+        //fetch("http://localhost:3456/compagnie/reqCabines").then((data) =>
+          //  data.json()).then((response) =>{this.cabines = response.classes})
     }
 
-    componentDidMount() {
-        // @ts-ignore
-        //this.dialog.open()
-    }
 
-    InscriptionButton= () =>{
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    InscriptionButton= async () =>{
+        try {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
-            "lName": this.name,
-            "fName": this.Fname,
-            "email": this.AM,
-            "password": this.Mdp,
-            "birtDate": this.DateN
-        });
+            var raw = JSON.stringify({
+                "lName": this.name,
+                "fName": this.Fname,
+                "email": this.AM,
+                "password": this.Mdp,
+                "birtDate": this.DateN
+            });
 
-         var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw
 
-        };
+            };
 
-        fetch("https://api.altair-studios.fr:4318/compagnie/auth/register", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+            const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/register", requestOptions)
+            const {status, error} = await response.json();
+            if(error === undefined){
+                alert("Vous êtes inscrit !")
+            }else{
+                alert(error[0].errorType)
+            }
 
+        } catch (e) {
+            console.log(e)
+        }
 
     }
 
@@ -82,9 +83,7 @@ class Choix extends React.Component<any, any>{
     setDateN = (changes : String) => {
         this.DateN = changes;
     }
-    onOpen = (event:any) =>{
-        alert('jhugyjfhcgjkiop')
-    }
+
 
     render = () => {
         console.log(this.cabines)
@@ -105,7 +104,7 @@ class Choix extends React.Component<any, any>{
                 <div className={"labelSearch container"}>
                 <TextField setter={this.setConfirmationMdp} title={"Confirmation du MDP"} MDP={true} />
                 </div>
-                <button onClick={this.onOpen} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
+                <button onClick={this.InscriptionButton} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
                     <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
                     <span className="mdc-button__label">Validation</span>
