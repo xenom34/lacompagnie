@@ -9,6 +9,7 @@ import CalendarChoice from "./CalendarChoice";
 import NumbersChoice from "./NumbersChoice";
 import {data} from "autoprefixer";
 import TextField from "./TextField";
+import {AsyncLocalStorage} from "async_hooks";
 
 
 //import reactimg from "../img/reactimg.jpeg"
@@ -37,12 +38,18 @@ class Choix extends React.Component<any, any>{
             };
 
             const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/login",requestOptions)
-            const {status, error} = await response.json();
-            if(error === undefined){
+            //const {status, error} = await response.json();
+            console.log(response.json())
+            response.headers.forEach((e) => console.log(e))
+            console.log('auth'+response.headers.has('auth_token'))
+            console.log('auth'+response.headers.get('auth_token'))
+            //localStorage.setItem('token',token)
+            //localStorage.getItem('token')
+            /*if(error === undefined){
                 alert("Vous êtes connectés !")
             }else{
                 alert(error[0].errorType)
-            }
+            }*/
 
         } catch (e) {
             console.log(e)
