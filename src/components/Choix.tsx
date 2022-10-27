@@ -40,7 +40,7 @@ class Choix extends React.Component<any, any>{
             const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/login, requestOptions")
             const {status, error} = await response.json();
             if(error === undefined){
-                alert("Vous êtes inscrit !")
+                alert("Vous êtes connectés !")
             }else{
                 alert(error[0].errorType)
             }
@@ -50,6 +50,17 @@ class Choix extends React.Component<any, any>{
         }
     }
 
+    setAm = (changes : any) => {
+      this.AM = changes;
+    }
+
+    setMdp = (changes : any) => {
+        this.Mdp = changes;
+    }
+
+    onchange=() => {
+        alert("je fonctionne")
+    }
 
     constructor(props:any) {
         super(props);
@@ -69,10 +80,10 @@ class Choix extends React.Component<any, any>{
                     <TextField title={"Adresse mail"} restriction={true}/>
                 </div>
                     <div className={"labelSearch container"}>
-                    <TextField title={"Mot de passe"} MDP={true} valueRef={""}/>
+                    <TextField setter={this.setAm} title={"Mot de passe"} MDP={true} valueRef={""}/>
                     </div>
 
-                <button style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
+                <button onClick={this.onchange} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
                     <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
                     <span className="mdc-button__label">Validation</span>
