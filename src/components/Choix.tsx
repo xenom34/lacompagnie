@@ -16,6 +16,40 @@ import TextField from "./TextField";
 class Choix extends React.Component<any, any>{
     private menu: any;
     private cabines: Array<Object> =[];
+    private AM: any;
+    private Mdp : any;
+
+
+    InscriptionButton= async () =>{
+        try {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                "email": this.AM,
+                "password": this.Mdp,
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw
+
+            };
+
+            const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/login, requestOptions")
+            const {status, error} = await response.json();
+            if(error === undefined){
+                alert("Vous êtes inscrit !")
+            }else{
+                alert(error[0].errorType)
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 
     constructor(props:any) {
         super(props);
