@@ -1,17 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
-import {AnyAaaaRecord} from "dns";
-import {MDCTextField, MDCTextFieldIcon} from '@material/textfield';
-import {MDCMenu} from "@material/menu";
-import DropdownChoice from "./DropDownChoice";
 import CalendarChoice from "./CalendarChoice";
-import NumbersChoice from "./NumbersChoice";
-import {data} from "autoprefixer";
 import TextField from "./TextField";
-import {MDCDialog} from "@material/dialog";
 import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+
 
 class Choix extends React.Component<any, any>{
     private menu: any;
@@ -23,11 +16,11 @@ class Choix extends React.Component<any, any>{
     private ConfMdp: String | undefined;
     private DateN: String | undefined;
     private dialog: any | undefined;
+    private boolMdp: boolean ;
 
     constructor(props:any) {
         super(props);
-        //fetch("http://localhost:3456/compagnie/reqCabines").then((data) =>
-          //  data.json()).then((response) =>{this.cabines = response.classes})
+        this.boolMdp = false;
     }
 
 
@@ -73,20 +66,30 @@ class Choix extends React.Component<any, any>{
     }
     setMdp = (changes : String) => {
         this.Mdp = changes;
+
     }
     setAM = (changes : String) => {
         this.AM = changes;
     }
     setConfirmationMdp = (changes : String) => {
         this.ConfMdp = changes;
+        this.TryMdps()
+
     }
     setDateN = (changes : String) => {
         this.DateN = changes;
     }
 
+    TryMdps = () => {
+        if(this.ConfMdp === this.Mdp){
+            this.boolMdp = true;
+        }else{
+            this.boolMdp = false;
+        }
+        return this.boolMdp
+    }
 
     render = () => {
-        console.log(this.cabines)
         return (
             <div className="mdc-card">
                 <h1 id={"searchTitle"}>✈️    Inscription</h1>
@@ -99,10 +102,10 @@ class Choix extends React.Component<any, any>{
                     <TextField setter={this.setAM} title={"Adresse mail"} restriction={true}/>
                 </div>
                     <div className={"labelSearch container"}>
-                    <TextField setter={this.setMdp} title={"Mot de passe"} MDP={true} />
+                    <TextField setter={this.setMdp} title={"Mot de passe"} resMinMdp={true} MDP={true} />
                     </div>
                 <div className={"labelSearch container"}>
-                <TextField setter={this.setConfirmationMdp} title={"Confirmation du MDP"} MDP={true} />
+                <TextField setter={this.setConfirmationMdp} resMinMdp={true} prout={this.TryMdps} title={"Confirmation du MDP"} confMdp={true} MDP={true} resBoolMdp = {this.boolMdp}/>
                 </div>
                 <button onClick={this.InscriptionButton} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
