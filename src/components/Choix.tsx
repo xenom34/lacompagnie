@@ -15,7 +15,6 @@ import TextField from "./TextField";
 
 class Choix extends React.Component<any, any>{
     private menu: any;
-    private cabines: Array<Object> =[];
     private AM: any;
     private Mdp : any;
 
@@ -37,7 +36,7 @@ class Choix extends React.Component<any, any>{
 
             };
 
-            const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/login, requestOptions")
+            const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/login",requestOptions)
             const {status, error} = await response.json();
             if(error === undefined){
                 alert("Vous êtes connectés !")
@@ -58,20 +57,13 @@ class Choix extends React.Component<any, any>{
         this.Mdp = changes;
     }
 
-    onchange=() => {
-        alert("je fonctionne")
-    }
-
     constructor(props:any) {
         super(props);
-        //this.cabines = ["Economy","Premium Economy","Business","Première"];
-        fetch("http://localhost:3456/compagnie/reqCabines").then((data) =>
-            data.json()
-        ).then((response) =>{this.cabines = response.classes})
+
     }
 
     render = () => {
-        console.log(this.cabines)
+
         return (
             <div className="mdc-card">
                 <h1 id={"searchTitle"}>✈️    Connexion</h1>
@@ -83,7 +75,7 @@ class Choix extends React.Component<any, any>{
                     <TextField setter={this.setAm} title={"Mot de passe"} MDP={true} valueRef={""}/>
                     </div>
 
-                <button onClick={this.onchange} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
+                <button onClick={this.InscriptionButton} style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
                     <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
                     <span className="mdc-button__label">Validation</span>
