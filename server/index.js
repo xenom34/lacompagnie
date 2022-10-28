@@ -1,14 +1,12 @@
 const express = require('express')
 const cors = require('cors');
-
+const jwt = require('jsonwebtoken')
 const { MongoClient } = require("mongodb");
-const myArgs = process.argv.slice(2);
-// Connection URI
-const uri = "mongodb://app:"+myArgs[0]+"@altair-studios.fr:1727/?tls=true&tlsCAFile=C:\\Users\\micha\\Documents\\ca.pem&tlsCertificateKeyFile=C:\\Users\\micha\\Documents\\mongodb.pem&authMechanism=DEFAULT";
-// Create a new MongoClient
-const client = new MongoClient(uri);
 const bcrypt = require('bcryptjs');
+const myArgs = process.argv.slice(2);
+const uri = "mongodb://app:"+myArgs[0]+"@altair-studios.fr:1727/?tls=true&tlsCAFile=C:\\Users\\micha\\Documents\\ca.pem&tlsCertificateKeyFile=C:\\Users\\micha\\Documents\\mongodb.pem&authMechanism=DEFAULT";
 let salt = ''
+const client = new MongoClient(uri);
 
 async function run() {
     try {
@@ -122,6 +120,18 @@ app.get('/compagnie/reqCabines', async (req, res) => {
 app.get('/compagnie/reqAirports', async (req, res) => {
     res.status(200).json(await getCollec('airports',{projection: { _id: 0, name: 1,iata_code:1,country:1}}))
 })
+app.get('/', async (req, res,next) => {
+    const token = req.header('auth-token');
+    if (!token) return res.status(401).send('Access Denied')
+    try {
+        const verified = jwt.verify(token,myArgs[1])
+        req.user = verified;
+        res.status(200).send(req.user)
+        next()
+    }catch (e) {
+        res.status(400).send('Invalid Token')
+    }
+})
 app.post('/compagnie/auth/register',async (req,res) =>{
     const hashedPassword = await bcrypt.hash(req.body.birtDate,salt);
     const retrieved = await postRegister({
@@ -138,6 +148,7 @@ app.post('/compagnie/auth/login',async (req,res) =>{
         email: req.body.email,
         password : req.body.password
     })
-    retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).json(retrieved)
+    const token = jwt.sign({_id: retrieved._id},myArgs[1],{algorithm: 'HS256'});
+    retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).header('auth_token',token).json(retrieved)
 })
 app.listen(4318, "",() => {console.log("Serveur à l'écoute 4318")})
