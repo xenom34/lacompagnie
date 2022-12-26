@@ -8,7 +8,7 @@ import DropdownChoice from "./DropdownChoice";
 import CalendarChoice from "./CalendarChoice";
 import NumbersChoice from "./NumbersChoice";
 import {data} from "autoprefixer";
-import {CreditCardTextField} from "./CreditCardTextField";
+import TextField from "./TextField";
 
 
 //import reactimg from "../img/reactimg.jpeg"
