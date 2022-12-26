@@ -8,6 +8,7 @@ import PopConnexion from "./PopConnexion";
 import Background from "./Background";
 import Search from "./Search";
 import DropdownChoice from "./DropdownChoice";
+import Paiement from "./Paiement";
 //import reactimg from "../img/reactimg.jpeg"
 
 class App extends React.Component<any, any>{
@@ -15,7 +16,7 @@ class App extends React.Component<any, any>{
     render() {
         return (
             <div className="App">
-                <Search/>
+                <Paiement/>
             </div>
 
         );

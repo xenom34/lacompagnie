@@ -13,7 +13,7 @@ import {CreditCardTextField} from "./CreditCardTextField";
 
 //import reactimg from "../img/reactimg.jpeg"
 
-class Search extends React.Component<any, any>{
+class Paiement extends React.Component<any, any>{
     private menu: any;
     private cabines: Array<Object> =[];
 
@@ -37,6 +37,7 @@ class Search extends React.Component<any, any>{
                     <CalendarChoice title={"Arrivée le *"}/>
                     <NumbersChoice title={"Passagers"}/>
                     <DropdownChoice title={"Cabines"} content={this.cabines}/>
+                    <CreditCardTextField/>
                 </div>
                 <button style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
                     <span className="mdc-button__ripple"></span>
@@ -48,4 +49,4 @@ class Search extends React.Component<any, any>{
     }
 }
 
-export default Search;
+export default Paiement;
