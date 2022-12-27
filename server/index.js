@@ -170,6 +170,17 @@ async function fineFlightResults(queryResults,passengers,cabin) {
     return resultat;
 }
 
+function getProjection(cabin) {
+    switch (cabin) {
+        case 'e': return{projection: { price_premium: 0, price_business: 0,price_first:0},price_economy: '$price'}
+        case 'p': return{projection: { price_economy: 0, price_business: 0,price_first:0},price_premium: '$price'}
+        case 'b': return{projection: { price_economy: 0, price_premium: 0,price_first:0},price_business: '$price'}
+        case 'f': return{projection: { price_economy: 0, price_premium: 0,price_business:0},price_first: '$price'}
+        default : return {}
+
+    }
+}
+
 app.get('/compagnie/reqFlights', async (req, res) => {
     console.log(req.query.departureDate)
     console.log(req.query.arrivalDate)
@@ -196,7 +207,7 @@ app.get('/compagnie/reqFlights', async (req, res) => {
         arrival = new Date(req.query.arrivalDate)
         departure = new Date(req.query.departureDate)
         askToken = initSearchSession(req.query.nbPassengers,req.query.cabin);
-        res.status(200).json(await fineFlightResults(await getCollec('flights', {}, {
+        res.status(200).json(await fineFlightResults(await getCollec('flights', getProjection(req.query.cabin), {
             "date_departure": { $eq: departure},
             "airport_departure": parseInt(airport_d),
             "airport_arrival": parseInt(airport_a)
