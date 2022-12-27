@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const jwt = require('jsonwebtoken')
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId} = require("mongodb");
 const bcrypt = require('bcryptjs');
 const {datetime} = require('datetime')
 const {result} = require("lodash");
@@ -103,7 +103,9 @@ async function initSearchSession(){
     let content = {};
     try {
         content.status = "search";
-        return await client.db("app").collection('tripFile').insertOne(content);
+        resultat = await client.db("app").collection('tripFile').insertOne(content);
+        //return await client.db("app").collection('tripFile').insertOne(content);
+        return resultat.insertedId.toString();
     }catch (e) {
         return {status:'ERROR',error:e};
     }
@@ -181,6 +183,16 @@ function getProjection(cabin) {
     }
 }
 
+async function checkAskToken(askToken) {
+    let files = await getCollec('tripFile', {}, {
+        _id: {
+            $eq: ObjectId(askToken)
+        },
+    })
+
+    return files.length !== 0
+}
+
 app.get('/compagnie/reqFlights', async (req, res) => {
     console.log(req.query.departureDate)
     console.log(req.query.arrivalDate)
@@ -203,15 +215,21 @@ app.get('/compagnie/reqFlights', async (req, res) => {
         res.status(400).send('Please respect the date format YYYY-MM-DD')
     }else if(!(req.query.cabin === 'e' || req.query.cabin === 'f' || req.query.cabin === 'b' || req.query.cabin === 'p')){
         res.status(400).send('Please specify a correct cabin class (e,p,b or f)')
+    }else if (req.query.askToken !== undefined && !await checkAskToken(req.query.askToken)){
+        res.status(400).send('Incorrect search token')
     }else {
         arrival = new Date(req.query.arrivalDate)
         departure = new Date(req.query.departureDate)
-        askToken = initSearchSession(req.query.nbPassengers,req.query.cabin);
-        res.status(200).json(await fineFlightResults(await getCollec('flights', getProjection(req.query.cabin), {
+        let resultats = {};
+        resultats.request = await fineFlightResults(await getCollec('flights', getProjection(req.query.cabin), {
             "date_departure": { $eq: departure},
             "airport_departure": parseInt(airport_d),
             "airport_arrival": parseInt(airport_a)
-        }),req.query.nbPassengers,req.query.cabin))
+        }),req.query.nbPassengers,req.query.cabin)
+        if (req.query.askToken === undefined){
+            resultats.askToken = await initSearchSession(req.query.nbPassengers,req.query.cabin);
+        }
+        res.status(200).json(resultats)
     }
 })
 app.get('/', async (req, res,next) => {
