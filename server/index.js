@@ -133,18 +133,17 @@ app.get('/compagnie/reqFlights', async (req, res) => {
     strDeparture = req.query.departureDate;
 
 
-    if (req.query.departureDate === undefined || req.query.arrivalDate === undefined){
-        res.status(400).send('Please give a departure date and an arrival date')
+    if (req.query.departureDate === undefined){
+        res.status(400).send('Please give a departure date')
     }else if (req.query.departureAirport === undefined || req.query.arrivalAirport === undefined){
         res.status(400).send('Please give a departure airport and an arrival airport')
-    }else if(!strArrival.match(dateFormatRegex) || !strDeparture.match(dateFormatRegex)){
+    }else if(!strDeparture.match(dateFormatRegex)){
         res.status(400).send('Please respect the date format YYYY-MM-DD')
     }else {
         arrival = new Date(req.query.arrivalDate)
         departure = new Date(req.query.departureDate)
         res.status(200).json(await getCollec('flights', {}, {
             "date_departure": { $eq: departure},
-            "date_arrival": { $eq: arrival},
             "airport_departure": parseInt(airport_d),
             "airport_arrival": parseInt(airport_a)
         }))
@@ -161,6 +160,9 @@ app.get('/', async (req, res,next) => {
     }catch (e) {
         res.status(400).send('Invalid Token')
     }
+})
+app.post('/compagnie/auth/register',async (req,res) =>{
+    res.status(200).json()
 })
 app.post('/compagnie/auth/register',async (req,res) =>{
     const retrieved = await postRegister({
