@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const { MongoClient } = require("mongodb");
 const bcrypt = require('bcryptjs');
 const {datetime} = require('datetime')
+const {result} = require("lodash");
 const myArgs = process.argv.slice(2);
 const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
 const uri = "mongodb://app:"+myArgs[0]+"@altair-studios.fr:1727/?tls=true&tlsCAFile=C:\\Users\\micha\\Documents\\ca.pem&tlsCertificateKeyFile=C:\\Users\\micha\\Documents\\mongodb.pem&authMechanism=DEFAULT";
@@ -98,6 +99,16 @@ async function postRegister(content){
     }
 }
 
+async function initSearchSession(){
+    let content = {};
+    try {
+        content.status = "search";
+        return await client.db("app").collection('tripFile').insertOne(content);
+    }catch (e) {
+        return {status:'ERROR',error:e};
+    }
+}
+
 async function postLogin(content){
     try {
         let errors = await validateLogin(content)
@@ -122,6 +133,43 @@ app.get('/compagnie/reqCabines', async (req, res) => {
 app.get('/compagnie/reqAirports', async (req, res) => {
     res.status(200).json(await getCollec('airports',{projection: { _id: 0, name: 1,iata_code:1,country:1}},{}))
 })
+
+async function checkSeatsAvailable(item,passengers,cabin) {
+    let sizeAircraft;
+    let bookings = await getCollec('bookings', {}, {
+        "flight": item._id,
+        "class": cabin
+    })
+    let aircraft = await getCollec('aircrafts', {}, {
+        "_id": item.aircraft
+    })
+    switch (cabin) {
+        case 'e':
+            sizeAircraft = aircraft.seats_economy;
+            break;
+        case 'p':
+            sizeAircraft = aircraft.seats_economy;
+            break;
+        case 'b':
+            sizeAircraft = aircraft.seats_business;
+            break;
+        case 'f':
+            sizeAircraft = aircraft.seats_first;
+            break;
+    }
+    return bookings.length >= sizeAircraft;
+}
+
+async function fineFlightResults(queryResults,passengers,cabin) {
+    /*queryResults.forEach(e => {
+        if (checkSeatsAvailable()){
+            queryResults.
+        }
+    })*/
+    let resultat = await queryResults.filter(async item => await checkSeatsAvailable(item, passengers, cabin));
+    return resultat;
+}
+
 app.get('/compagnie/reqFlights', async (req, res) => {
     console.log(req.query.departureDate)
     console.log(req.query.arrivalDate)
@@ -132,21 +180,27 @@ app.get('/compagnie/reqFlights', async (req, res) => {
     strArrival = req.query.arrivalDate;
     strDeparture = req.query.departureDate;
 
-
     if (req.query.departureDate === undefined){
         res.status(400).send('Please give a departure date')
-    }else if (req.query.departureAirport === undefined || req.query.arrivalAirport === undefined){
+    }else if (req.query.cabin === undefined){
+        res.status(400).send('Please specify a cabin class')
+    }else if (req.query.nbPassengers === undefined){
+        res.status(400).send('Please give a number of passengers')}
+    else if (req.query.departureAirport === undefined || req.query.arrivalAirport === undefined){
         res.status(400).send('Please give a departure airport and an arrival airport')
     }else if(!strDeparture.match(dateFormatRegex)){
         res.status(400).send('Please respect the date format YYYY-MM-DD')
+    }else if(!(req.query.cabin === 'e' || req.query.cabin === 'f' || req.query.cabin === 'b' || req.query.cabin === 'p')){
+        res.status(400).send('Please specify a correct cabin class (e,p,b or f)')
     }else {
         arrival = new Date(req.query.arrivalDate)
         departure = new Date(req.query.departureDate)
-        res.status(200).json(await getCollec('flights', {}, {
+        askToken = initSearchSession(req.query.nbPassengers,req.query.cabin);
+        res.status(200).json(await fineFlightResults(await getCollec('flights', {}, {
             "date_departure": { $eq: departure},
             "airport_departure": parseInt(airport_d),
             "airport_arrival": parseInt(airport_a)
-        }))
+        }),req.query.nbPassengers,req.query.cabin))
     }
 })
 app.get('/', async (req, res,next) => {
