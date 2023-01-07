@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs');
 const {datetime} = require('datetime')
 const {result} = require("lodash");
 const myArgs = process.argv.slice(2);
-const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
 const uri = "mongodb://app:"+myArgs[0]+"@altair-studios.fr:1727/?tls=true&tlsCAFile=C:\\Users\\micha\\Documents\\ca.pem&tlsCertificateKeyFile=C:\\Users\\micha\\Documents\\mongodb.pem&authMechanism=DEFAULT";
+const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
 let salt = ''
 const client = new MongoClient(uri);
 async function run() {
@@ -26,6 +26,7 @@ async function run() {
 run().catch(console.dir);
 
 async function getCollec(str,options,filter){
+    //Function to simplify getting data in collection
     console.log(filter)
     try {
         const cursor = await client.db("app").collection(str).find(filter,options);
@@ -36,6 +37,7 @@ async function getCollec(str,options,filter){
 }
 
 async function validateRegister(content) {
+    //Verify the inputs
     let detectResults = [];
     if (content.fName === undefined || content.fName.length === 0) {
         detectResults.push({field: 'fName', errorType: "The first name is mandatory", input: content.fName})
@@ -100,6 +102,7 @@ async function postRegister(content){
 }
 
 async function initSearchSession(){
+    //Create file and returns askToken
     let content = {};
     try {
         content.status = "search";
