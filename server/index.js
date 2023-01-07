@@ -244,8 +244,94 @@ app.get('/', async (req, res,next) => {
         res.status(400).send('Invalid Token')
     }
 })
-app.post('/compagnie/auth/register',async (req,res) =>{
-    res.status(200).json()
+
+async function validateBooking(content) {
+    let detectResults = [];
+    if (content.flight === undefined || content.flight.length === 0) {
+        detectResults.push({field: 'flight', errorType: "Client did not provide flight number", input: content.flight})
+    }
+    if (content.class === undefined || content.class.length === 0) {
+        detectResults.push({field: 'class', errorType: "Client did not provide a class", input: content.class})
+    }
+    if (content.passengers === undefined || content.passengers.length === 0) {
+        detectResults.push({field: 'passengers', errorType: "Client did not provide passengers", input: content.passengers})
+    }
+    if (content.askToken === undefined || content.askToken.length === 0) {
+        detectResults.push({field: 'askToken', errorType: "Client did not provide the token given when the flight search was accomplished", input: content.askToken})
+    }
+    if (detectResults.length !== 0) {
+        return detectResults;
+    }else{
+        return {status:'OK'}
+    }
+}
+
+async function processBookings(content) {
+    let resultatPassagers;
+    let resultat = [];
+    for (let i = 0; i < content.passengers; i++) {
+        resultatPassagers = await client.db("app").collection('passengers').insertOne({});
+        resultat.push((await client.db("app").collection('bookings').insertOne({
+            flight: content.flight,
+            class: content.class,
+            passenger: resultatPassagers._id
+        })).insertedId.toString())
+        let file = await getCollec('tripFile', {}, {
+            "_id": ObjectId(content.askToken)
+        })
+        file[0].status = "partial";
+        if (file[0].bookings === undefined){
+            file[0].bookings = []
+        }
+        file[0].bookings.push([resultat[0],resultatPassagers.insertedId.toString()])
+
+        await client.db("app").collection('tripFile').updateOne({
+            _id: ObjectId(content.askToken)
+        },{
+            $set: file[0]
+        })
+    }
+    return {status:'OK'}
+}
+
+async function postBooking(content) {
+    try {
+        let errors = await validateBooking(content)
+        if (errors.status !== 'OK'){
+            return {status:'ERROR',error:errors};
+        }else{
+            return await processBookings(content);
+        }
+    }catch (e) {
+        console.log(e)
+        return {status:'ERROR',error:"Internal error"};
+    }
+}
+
+app.post('/compagnie/trip/:askToken/submitBooking',async (req,res) =>{
+    const askToken = req.params.askToken;
+    const retrieved = await postBooking({
+        flight: req.body.flight,
+        class : req.body.class,
+        passengers : req.body.passengers,
+        askToken : askToken
+    })
+    retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).json(retrieved)
+})
+
+app.get('/compagnie/trip/:askToken/validate',async (req,res) =>{
+    const askToken = req.params.askToken;
+    let file = await getCollec('tripFile', {}, {
+        "_id": ObjectId(askToken)
+    })
+    file[0].status = "validated";
+    await client.db("app").collection('tripFile').updateOne({
+        _id: ObjectId(askToken)
+    },{
+        $set: file[0]
+    })
+    res.status(200).json(file)
+
 })
 app.post('/compagnie/auth/register',async (req,res) =>{
     const retrieved = await postRegister({
