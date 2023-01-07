@@ -133,10 +133,18 @@ app.use(cors({
 }));
 app.use(express.json())
 app.get('/compagnie/reqCabines', async (req, res) => {
-    res.status(200).json(await getCollec('cabines',{projection: { _id: 0, cabine: 1}},{}))
+    try {
+        res.status(200).json(await getCollec('cabines',{projection: { _id: 0, cabine: 1}},{}))
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
 })
 app.get('/compagnie/reqAirports', async (req, res) => {
-    res.status(200).json(await getCollec('airports',{projection: { _id: 0, name: 1,iata_code:1,country:1}},{}))
+    try {
+        res.status(200).json(await getCollec('airports',{projection: { _id: 0, name: 1,iata_code:1,country:1}},{}))
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
 })
 
 async function checkSeatsAvailable(item,passengers,cabin) {
@@ -197,54 +205,62 @@ async function checkAskToken(askToken) {
 }
 
 app.get('/compagnie/reqFlights', async (req, res) => {
-    console.log(req.query.departureDate)
-    console.log(req.query.arrivalDate)
-    let airport_a = req.query.arrivalAirport;
-    let airport_d = req.query.departureAirport;
-    console.log(airport_a)
-    console.log(airport_d)
-    strArrival = req.query.arrivalDate;
-    strDeparture = req.query.departureDate;
+    try {
+        console.log(req.query.departureDate)
+        console.log(req.query.arrivalDate)
+        let airport_a = req.query.arrivalAirport;
+        let airport_d = req.query.departureAirport;
+        console.log(airport_a)
+        console.log(airport_d)
+        strArrival = req.query.arrivalDate;
+        strDeparture = req.query.departureDate;
 
-    if (req.query.departureDate === undefined){
-        res.status(400).send('Please give a departure date')
-    }else if (req.query.cabin === undefined){
-        res.status(400).send('Please specify a cabin class')
-    }else if (req.query.nbPassengers === undefined){
-        res.status(400).send('Please give a number of passengers')}
-    else if (req.query.departureAirport === undefined || req.query.arrivalAirport === undefined){
-        res.status(400).send('Please give a departure airport and an arrival airport')
-    }else if(!strDeparture.match(dateFormatRegex)){
-        res.status(400).send('Please respect the date format YYYY-MM-DD')
-    }else if(!(req.query.cabin === 'e' || req.query.cabin === 'f' || req.query.cabin === 'b' || req.query.cabin === 'p')){
-        res.status(400).send('Please specify a correct cabin class (e,p,b or f)')
-    }else if (req.query.askToken !== undefined && !await checkAskToken(req.query.askToken)){
-        res.status(400).send('Incorrect search token')
-    }else {
-        arrival = new Date(req.query.arrivalDate)
-        departure = new Date(req.query.departureDate)
-        let resultats = {};
-        resultats.request = await fineFlightResults(await getCollec('flights', getProjection(req.query.cabin), {
-            "date_departure": { $eq: departure},
-            "airport_departure": parseInt(airport_d),
-            "airport_arrival": parseInt(airport_a)
-        }),req.query.nbPassengers,req.query.cabin)
-        if (req.query.askToken === undefined){
-            resultats.askToken = await initSearchSession(req.query.nbPassengers,req.query.cabin);
+        if (req.query.departureDate === undefined){
+            res.status(400).send('Please give a departure date')
+        }else if (req.query.cabin === undefined){
+            res.status(400).send('Please specify a cabin class')
+        }else if (req.query.nbPassengers === undefined){
+            res.status(400).send('Please give a number of passengers')}
+        else if (req.query.departureAirport === undefined || req.query.arrivalAirport === undefined){
+            res.status(400).send('Please give a departure airport and an arrival airport')
+        }else if(!strDeparture.match(dateFormatRegex)){
+            res.status(400).send('Please respect the date format YYYY-MM-DD')
+        }else if(!(req.query.cabin === 'e' || req.query.cabin === 'f' || req.query.cabin === 'b' || req.query.cabin === 'p')){
+            res.status(400).send('Please specify a correct cabin class (e,p,b or f)')
+        }else if (req.query.askToken !== undefined && !await checkAskToken(req.query.askToken)){
+            res.status(400).send('Incorrect search token')
+        }else {
+            arrival = new Date(req.query.arrivalDate)
+            departure = new Date(req.query.departureDate)
+            let resultats = {};
+            resultats.request = await fineFlightResults(await getCollec('flights', getProjection(req.query.cabin), {
+                "date_departure": { $eq: departure},
+                "airport_departure": parseInt(airport_d),
+                "airport_arrival": parseInt(airport_a)
+            }),req.query.nbPassengers,req.query.cabin)
+            if (req.query.askToken === undefined){
+                resultats.askToken = await initSearchSession(req.query.nbPassengers,req.query.cabin);
+            }
+            res.status(200).json(resultats)
         }
-        res.status(200).json(resultats)
+    }catch (e){
+        res.status(500).json({error:"Internal error"})
     }
 })
 app.get('/', async (req, res,next) => {
-    const token = req.header('auth-token');
-    if (!token) return res.status(401).send('Access Denied')
     try {
-        const verified = jwt.verify(token,myArgs[1])
-        req.user = verified;
-        res.status(200).send(req.user)
-        next()
+        const token = req.header('auth-token');
+        if (!token) return res.status(401).send('Access Denied')
+        try {
+            const verified = jwt.verify(token,myArgs[1])
+            req.user = verified;
+            res.status(200).send(req.user)
+            next()
+        }catch (e) {
+            res.status(400).send('Invalid Token')
+        }
     }catch (e) {
-        res.status(400).send('Invalid Token')
+        res.status(500).json({error:"Internal error"})
     }
 })
 
@@ -270,31 +286,35 @@ async function validateBooking(content) {
 }
 
 async function processBookings(content) {
-    let resultatPassagers;
-    let resultat = [];
-    for (let i = 0; i < content.passengers; i++) {
-        resultatPassagers = await client.db("app").collection('passengers').insertOne({});
-        resultat.push((await client.db("app").collection('bookings').insertOne({
-            flight: content.flight,
-            class: content.class,
-            passenger: resultatPassagers._id
-        })).insertedId.toString())
-        let file = await getCollec('tripFile', {}, {
-            "_id": ObjectId(content.askToken)
-        })
-        file[0].status = "partial";
-        if (file[0].bookings === undefined){
-            file[0].bookings = []
-        }
-        file[0].bookings.push([resultat[0],resultatPassagers.insertedId.toString()])
+    try {
+        let resultatPassagers;
+        let resultat = [];
+        for (let i = 0; i < content.passengers; i++) {
+            resultatPassagers = await client.db("app").collection('passengers').insertOne({});
+            resultat.push((await client.db("app").collection('bookings').insertOne({
+                flight: content.flight,
+                class: content.class,
+                passenger: resultatPassagers._id
+            })).insertedId.toString())
+            let file = await getCollec('tripFile', {}, {
+                "_id": ObjectId(content.askToken)
+            })
+            file[0].status = "partial";
+            if (file[0].bookings === undefined){
+                file[0].bookings = []
+            }
+            file[0].bookings.push([resultat[0],resultatPassagers.insertedId.toString()])
 
-        await client.db("app").collection('tripFile').updateOne({
-            _id: ObjectId(content.askToken)
-        },{
-            $set: file[0]
-        })
+            await client.db("app").collection('tripFile').updateOne({
+                _id: ObjectId(content.askToken)
+            },{
+                $set: file[0]
+            })
+        }
+        return {status:'OK'}
+    }catch (e) {
+        return {status:'ERROR'}
     }
-    return {status:'OK'}
 }
 
 async function postBooking(content) {
@@ -312,46 +332,63 @@ async function postBooking(content) {
 }
 
 app.post('/compagnie/trip/:askToken/submitBooking',async (req,res) =>{
-    const askToken = req.params.askToken;
-    const retrieved = await postBooking({
-        flight: req.body.flight,
-        class : req.body.class,
-        passengers : req.body.passengers,
-        askToken : askToken
-    })
-    retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).json(retrieved)
+    try {
+        const askToken = req.params.askToken;
+        const retrieved = await postBooking({
+            flight: req.body.flight,
+            class : req.body.class,
+            passengers : req.body.passengers,
+            askToken : askToken
+        })
+        retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).json(retrieved)
+    }catch (e){
+        res.status(500).json({error:"Internal error"})
+    }
+
 })
 
 app.get('/compagnie/trip/:askToken/validate',async (req,res) =>{
-    const askToken = req.params.askToken;
-    let file = await getCollec('tripFile', {}, {
-        "_id": ObjectId(askToken)
-    })
-    file[0].status = "validated";
-    await client.db("app").collection('tripFile').updateOne({
-        _id: ObjectId(askToken)
-    },{
-        $set: file[0]
-    })
-    res.status(200).json(file)
+    try {
+        const askToken = req.params.askToken;
+        let file = await getCollec('tripFile', {}, {
+            "_id": ObjectId(askToken)
+        })
+        file[0].status = "validated";
+        await client.db("app").collection('tripFile').updateOne({
+            _id: ObjectId(askToken)
+        },{
+            $set: file[0]
+        })
+        res.status(200).json(file)
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
 
 })
 app.post('/compagnie/auth/register',async (req,res) =>{
-    const retrieved = await postRegister({
-        lName: req.body.lName,
-        fName: req.body.fName,
-        email: req.body.email,
-        password : await bcrypt.hash(req.body.password,salt),
-        birtDate: req.body.birtDate
-    })
-    retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).json(retrieved)
+    try {
+        const retrieved = await postRegister({
+            lName: req.body.lName,
+            fName: req.body.fName,
+            email: req.body.email,
+            password : await bcrypt.hash(req.body.password,salt),
+            birtDate: req.body.birtDate
+        })
+        retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).json(retrieved)
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
 })
 app.post('/compagnie/auth/login',async (req,res) =>{
-    const retrieved = await postLogin({
-        email: req.body.email,
-        password : req.body.password
-    })
-    const token = jwt.sign({_id: retrieved._id},myArgs[1],{algorithm: 'HS256'});
-    retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).header('auth_token',token).json(retrieved)
+    try {
+        const retrieved = await postLogin({
+            email: req.body.email,
+            password : req.body.password
+        })
+        const token = jwt.sign({_id: retrieved._id},myArgs[1],{algorithm: 'HS256'});
+        retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).header('auth_token',token).json(retrieved)
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
 })
 app.listen(4318, "",() => {console.log("Serveur à l'écoute 4318")})
