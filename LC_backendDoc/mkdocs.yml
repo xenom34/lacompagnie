@@ -1,0 +1,49 @@
+theme:
+  features:
+    - content.tabs.link
+  language: fr
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+  name: material
+  palette:
+    scheme: default
+    primary: indigo
+    accent: red
+site_name: La compagnie
+nav:
+  - Bienvenue: index.md
+  - Backend: 
+      - Sommaire: backend.md
+      - Sécurité: security.md
+      - Base de données: db.md
+      - Systême d'authentification: auth.md
+      - Informations statiques: static.md
+      - Systême de recherche de vol : search.md
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
