@@ -1,4 +1,4 @@
-# La compagnie
+## La compagnie
 Ce projet a été développé par des étudiants de master 2 MIAGE de l'université Evry Coucouronnes. 
 
 
