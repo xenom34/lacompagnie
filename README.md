@@ -14,7 +14,7 @@ L'Addon Remote - Containers pour VSC. Il permet d'utiliser les conteneurs de dé
 Participer aux projets
 Avant de présenter plus en avant le développement sous Home Assistant, nous allons faire un point sur la gestion d'un projet (un développement).
 
-Si vous êtes familier avec [GitHub)](https://github.com/xenom34/lacompagnie/blob/doc/Documentation/GitHub), vous pouvez passer ce chapitre.
+Si vous êtes familier avec [GitHub](https://github.com/xenom34/lacompagnie/blob/doc/Documentation/GitHub), vous pouvez passer ce chapitre.
 
 # Travailler avec GitHub
 Les environnements
