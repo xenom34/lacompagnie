@@ -1,9 +1,31 @@
-# Uno !
-This project developed by talented students is a card game based on the UNO game. The aim of the game is to get rid of all your cards before the other players. Players can play cards of the same suit or value. The player who has no cards left at the end of the game is declared the winner.
+# La compagnie
+Ce projet a été développé par des étudiants de master 2 MIAGE de l'université Evry Coucouronnes. 
 
-# Getting started
-This project is using technologies such as WebPack or React. Please make sure to install nodejs beforehand on your computer.
-1. Clone this repository
-2. Open a terminal and use `cd` command to access the repo's folder
-3. Execute `npm install`, to install all the dependencies related to the project. A (heavy) "node_modules" directory will appear.
-4. Execute `npm run build`, to run the file compilation and bundling process.
+
+# Pré-requis:
+
+git pour la gestion de version.
+Un compte Github
+
+# Recommandés:
+Nous utilisons des logiciels tel que Webstorm, Mongo DB. Cependant Visual Studio Code (VSC) fait parfaitement l'affaire.
+Tout autre editeur peut convenir. VSC offre plusieurs addons qui facilitent le développemnent avec Home Assistant.
+L'Addon Remote - Containers pour VSC. Il permet d'utiliser les conteneurs de développement via Docker.
+Participer aux projets
+Avant de présenter plus en avant le développement sous Home Assistant, nous allons faire un point sur la gestion d'un projet (un développement).
+
+Si vous êtes familier avec GitHub, vous pouvez passer ce chapitre.
+
+# Travailler avec GitHub
+Les environnements
+Il y a deux environnements distincts :
+
+# Développer en backend
+
+# Développer en frontend
+
+# Les ressources
+Ci-dessous un ensemble de ressources qui compléteront votre apprentissage.
+
+La documentation développeur pour La Compagnie
+La gestion des flux, des Issues et des Pull Request (PR) de Github
