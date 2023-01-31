@@ -143,7 +143,7 @@ app.get('/compagnie/reqCabines', async (req, res) => {
 })
 app.get('/compagnie/reqAirports', async (req, res) => {
     try {
-        res.status(200).json(await getCollec('airports',{projection: { _id: 0, name: 1,iata_code:1,country:1}},{}))
+        res.status(200).json(await getCollec('airports',{projection: { _id: 0,objectID:1, name: 1,iata_code:1,country:1}},{}))
     }catch (e) {
         res.status(500).json({error:"Internal error"})
     }
