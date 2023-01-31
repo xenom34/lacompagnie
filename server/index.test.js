@@ -1,5 +1,3 @@
-//process.argv.push('--arg1', 'R9M2AXwHFx4JI6pkfk7eCmrmmaov6ib6nYnZftEh');
-//process.argv.push('--arg2', 'ezhfuiazgydgigo5484');
 const app = require('./index');
 const request = require('supertest');
 const assert = require('assert');
