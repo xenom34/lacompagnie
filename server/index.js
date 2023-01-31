@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const cors = require('cors');
 const jwt = require('jsonwebtoken')
@@ -5,8 +6,8 @@ const { MongoClient, ObjectId} = require("mongodb");
 const bcrypt = require('bcryptjs');
 const {datetime} = require('datetime')
 const {result} = require("lodash");
-const myArgs = process.argv.slice(2);
-const uri = "mongodb://app:"+myArgs[0]+"@altair-studios.fr:1727/?tls=true&tlsCAFile=C:\\Users\\micha\\Documents\\ca.pem&tlsCertificateKeyFile=C:\\Users\\micha\\Documents\\mongodb.pem&authMechanism=DEFAULT";
+//const myArgs = process.argv.slice(2);
+const uri = "mongodb://app:"+process.env.ARGUMENT1+"@altair-studios.fr:1727/?tls=true&tlsCAFile=C:\\Users\\micha\\Documents\\ca.pem&tlsCertificateKeyFile=C:\\Users\\micha\\Documents\\mongodb.pem&authMechanism=DEFAULT";
 const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
 let salt = ''
 const client = new MongoClient(uri);
@@ -70,6 +71,7 @@ async function validateLogin(content) {
     if (content.password === undefined || content.password.length === 0) {
         detectResults.push({field: 'password', errorType: "The password is mandatory", input: content.password})
     }
+    if (detectResults.length !== 0){return detectResults}
     const emailUniqueTest = await client.db('app').collection('auth').findOne({email: content.email})
     console.log(emailUniqueTest)
     if (emailUniqueTest === null) {
@@ -123,7 +125,7 @@ async function postLogin(content){
             return errors;
         }
     }catch (e) {
-        return {status:'ERROR',error:e};
+        return {status:'ERROR',error:e.message};
     }
 }
 
@@ -263,7 +265,7 @@ app.get('/', async (req, res,next) => {
         const token = req.header('auth-token');
         if (!token) return res.status(401).send('Access Denied')
         try {
-            const verified = jwt.verify(token,myArgs[1])
+            const verified = jwt.verify(token,process.env.ARGUMENT2)
             req.user = verified;
             res.status(200).send(req.user)
             next()
@@ -396,7 +398,7 @@ app.post('/compagnie/auth/login',async (req,res) =>{
             email: req.body.email,
             password : req.body.password
         })
-        const token = jwt.sign({_id: retrieved._id},myArgs[1],{algorithm: 'HS256'});
+        const token = jwt.sign({_id: retrieved._id},process.env.ARGUMENT2,{algorithm: 'HS256'});
         retrieved.status === 'ERROR' ? res.status(400).json(retrieved) : res.status(200).header('auth_token',token).json(retrieved)
     }catch (e) {
         res.status(500).json({error:"Internal error"})
@@ -417,5 +419,6 @@ app.post('/compagnie/passengers',async (req,res) =>{
         res.status(500).json({error:"Internal error"})
     }
 })
-
 app.listen(4318, "",() => {console.log("Serveur à l'écoute 4318")})
+
+module.exports = app

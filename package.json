@@ -45,11 +45,13 @@
     "@material/menu": "^14.0.0",
     "@material/textfield": "^14.0.0",
     "@material/theme": "^14.0.0",
+    "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tsparticles": "^2.3.2",
     "reactjs-popup": "^2.0.5",
+    "supertest": "^6.3.3",
     "tsparticles-preset-sea-anemone": "^2.3.2"
   }
 }
