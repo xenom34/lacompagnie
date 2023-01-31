@@ -70,15 +70,20 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,  //chargement d'une image via la feuille de stylel
-                use:[
-                    'file-loader',
-                ]
+                loader: 'file-loader',
+                options: {
+                    name: 'images/[name].[ext]'
+                }
             },
             {
                 test:/\.(woff|woff2|eot|ttf|otf)$/,
                 use:[
                     'file-loader',
                 ],
+            },
+            {
+                test: /\.mp4$/,
+                use: 'file-loader?name=videos/[name].[ext]',
             },
             {
                 test: /\.(js|jsx)$/,

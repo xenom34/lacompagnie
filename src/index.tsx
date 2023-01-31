@@ -13,6 +13,7 @@ import "./style/themify-icons.css"
 import "./style/utilities.css"
 import "./style/vegas.min.css"
 
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );

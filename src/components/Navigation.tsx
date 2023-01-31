@@ -1,54 +1,53 @@
-import React, {useCallback} from "react";
+import React from "react";
+import logoWhite from '../img/logo-white.png'
+import logoDark from '../img/logo-dark.png'
 
 
-class Navigation extends React.Component<any, any>{
-    render() {
-        return (
-<nav id="siteNavbar"
-     className="site-navbar site-navbar-transparent navbar navbar-expand-lg navbar-dark bg-white shadow-light-lg site-navbar-absolute py-2"
-    >
+const SiteNavbar: React.FC = () => {
+    return (
+        <nav id="siteNavbar" className="site-navbar site-navbar-transparent navbar navbar-expand-lg navbar-dark bg-white shadow-light-lg site-navbar-absolute py-2" data-navbar-base="navbar-dark" data-navbar-scrolled="navbar-light" data-navbar-toggled="navbar-light">
 
-    <a className="navbar-brand" href="index.html">
-    </a>
+            <a className="navbar-brand" href="index.html">
+                <img src={logoWhite} alt="" className="navbar-brand-img navbar-brand-img-light"/>
+                    <img src={logoDark} alt="" className="navbar-brand-img navbar-brand-img-dark"/>
+            </a>
 
-    <button className="navbar-toggler-alternative" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="siteNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler-alternative" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="siteNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-alternative-icon">
           <span></span>
         </span>
-    </button>
+            </button>
 
-    <div className="navbar-collapse collapse" id="navbarCollapse">
+            <div className="navbar-collapse collapse" id="navbarCollapse">
 
-        <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-                <a className="nav-link scrollto" href="#home">Home</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link scrollto" href="#about">About</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link scrollto" href="#solutions">Solutions</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link scrollto" href="#features">Features</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link scrollto" href="#services">Services</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link scrollto" href="#contact">Contact</a>
-            </li>
-        </ul>
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#home">Home</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#about">About</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#solutions">Solutions</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#features">Features</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#services">Services</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link scrollto" href="#contact">Contact</a>
+                    </li>
+                </ul>
 
-        <a className="btn btn-white d-block d-lg-inline-block ml-lg-3"
-           href="https://themeforest.net/user/erilisdesign/portfolio" target="_blank" rel="noopener nofollow"
-           data-on-navbar-light="btn-primary" data-on-navbar-dark="btn-white">Connexion</a>
+                <a className="btn btn-white d-block d-lg-inline-block ml-lg-3" href="https://themeforest.net/user/erilisdesign/portfolio" target="_blank" rel="noopener nofollow" data-on-navbar-light="btn-primary" data-on-navbar-dark="btn-white">Buy now</a>
 
-    </div>
-</nav>
-    )
-    }
+            </div>
+        </nav>)
+}
 
-    }
-    export default Navigation;
+export default SiteNavbar;
