@@ -147,6 +147,17 @@ app.get('/compagnie/reqAirports', async (req, res) => {
     }
 })
 
+app.get('/compagnie/passengers/:id', async (req, res) => {
+    try {
+        let results = await getCollec('passengers',{},{
+            "_id": ObjectId(req.params.id)
+        })
+        res.status(200).json(results[0])
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
+})
+
 async function checkSeatsAvailable(item,passengers,cabin) {
     let sizeAircraft;
     let bookings = await getCollec('bookings', {}, {
@@ -391,4 +402,20 @@ app.post('/compagnie/auth/login',async (req,res) =>{
         res.status(500).json({error:"Internal error"})
     }
 })
+
+app.post('/compagnie/passengers',async (req,res) =>{
+    try {
+        let id = req.body._id;
+        console.log(req.body)
+        delete req.body._id;
+        res.status(200).json(await client.db("app").collection('passengers').updateOne({
+            _id: ObjectId(id)
+        },{
+            $set: req.body
+        }))
+    }catch (e) {
+        res.status(500).json({error:"Internal error"})
+    }
+})
+
 app.listen(4318, "",() => {console.log("Serveur à l'écoute 4318")})
