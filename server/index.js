@@ -254,6 +254,36 @@ app.get('/compagnie/reqFlights', async (req, res) => {
             if (req.query.askToken === undefined){
                 resultats.askToken = await initSearchSession(req.query.nbPassengers,req.query.cabin);
             }
+            switch (req.query.cabin) {
+                case 'e':
+                    resultats.request.map(d => {
+                        d.price = d.price_economy;
+                        delete d.price_economy;
+                        return d;
+                    });
+                    break;
+                case 'b':
+                    resultats.request.map(d => {
+                        d.price = d.price_business;
+                        delete d.price_business;
+                        return d;
+                    });
+                    break;
+                case 'p':
+                    resultats.request.map(d => {
+                        d.price = d.price_premium;
+                        delete d.price_premium;
+                        return d;
+                    });
+                    break;
+                case 'f':
+                    resultats.request.map(d => {
+                        d.price = d.price_first;
+                        delete d.price_first;
+                        return d;
+                    });
+                    break;
+            }
             res.status(200).json(resultats)
         }
     }catch (e){
