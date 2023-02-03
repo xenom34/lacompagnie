@@ -142,8 +142,11 @@ app.get('/compagnie/reqCabines', async (req, res) => {
     }
 })
 app.get('/compagnie/reqAirports', async (req, res) => {
+    const notMuchAirports = ["146","193","210","340","368","507","580","1074","1128","1218","1382","1555","1586","1701","2188","2279","2560","3077","3316","3364","3469","3484","3682","3797","3830","4029"]
     try {
-        res.status(200).json(await getCollec('airports',{projection: { _id: 0,objectID:1, name: 1,iata_code:1,country:1}},{}))
+        res.status(200).json(await getCollec('airports',{projection: { _id: 0,objectID:1, name: 1,iata_code:1,country:1}},{
+            "objectID": { $in: notMuchAirports }
+        }))
     }catch (e) {
         res.status(500).json({error:"Internal error"})
     }
