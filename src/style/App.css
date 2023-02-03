@@ -1,6 +1,23 @@
 .App {
   text-align: center;
 }
+#AlleSimple{
+  display: grid;
+  padding : 30px 10px;
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 5fr ;
+  grid-template-raw: 2fr 2fr 2fr 2fr 2fr 2fr 5fr ;
+  gap: 10px 2em;
+}
+
+#AlleSimple:first-child{
+  align-self: center;
+  text-align: center;
+}
+#button_Reserve{
+  align-self: center;
+}
+
+
 
 .App-logo {
   height: 40vmin;

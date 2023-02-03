@@ -6,7 +6,7 @@ class Solutions extends React.Component<any, any>{
         return (
             <div className={"Solutions"}>
                  <div className="website-slider-item bg-transparent" id="solutions" data-navbar-slide="navbar-dark">
-                    <div className="website-slider-item-inner">
+                     <div className="website-slider-item-inner">
 
             <div className="container text-white">
                 <div className="row mb-7 text-center">
