@@ -21,8 +21,12 @@ Les environnements
 Il y a deux environnements distincts :
 
 # Développer en backend
+[Doc vers Backend](https://doc.altair-studios.fr/lacompagnie/backend/)
+[En cours de dev]
 
 # Développer en frontend
+[En cours de dev]
+
 
 # Les ressources
 Ci-dessous un ensemble de ressources qui compléteront votre apprentissage.
