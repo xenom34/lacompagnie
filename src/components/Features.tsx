@@ -1,7 +1,36 @@
 import React, {Fragment, useCallback} from "react";
-
+import TextField from "./TextField";
 
 class Features extends React.Component<any, any>{
+    private menu: any;
+    private cabines: Array<Object> =[];
+    private card: String | undefined;
+    private expire: String | undefined;
+    private cardName: String | undefined;
+    private cvc: String | undefined;
+
+    constructor(props:any) {
+        super(props);
+        //this.cabines = ["Economy","Premium Economy","Business","Première"];
+
+    }
+
+
+    setCard = (changes : any) => {
+        this.card = changes;
+    }
+
+    setExpire = (changes : any) => {
+        this.expire = changes;
+    }
+    setCardName = (changes : any) => {
+        this.cardName = changes;
+    }
+
+    setCVC = (changes : any) => {
+        this.cvc = changes;
+    }
+
     render() {
         return (
             <div className="website-slider-item bg-transparent" id="features" data-navbar-slide="navbar-dark">
@@ -10,62 +39,29 @@ class Features extends React.Component<any, any>{
                     <div className="container text-white">
                         <div className="row">
                             <div className="col-12 col-xl-5 mb-7 mb-xl-0">
-                                <h2 className="h1">Features</h2>
-                                <div className="divider bg-white"></div>
-                                <p>Fusce massa dolor, mattis sed ultrices ut, placerat ut leo. Donec sed fringilla lectus, non vulputate orci. Integer id libero euismod, interdum ligula vel, porttitor magna. Sed euismod maximus finibus. Pellentesque tempus ultricies nisi at cursus.</p>
+                                <h2 className="h1">💳     Paiement</h2>
+
                             </div>
-                            <div className="col-12 col-xl-6 offset-xl-1">
-                                <div className="row">
+                            <div className={"labelSearch container"}>
+                                <TextField setter={this.setCardName} title={"Nom du titulaire"} restriction={true} mandatory={true}/>
+                                <TextField setter={this.setCard} title={"Numéro carte"} restriction={true} card={true}/>
+                                <TextField setter={this.setExpire} title={"Expire le"} restriction={true} month={true}/>
+                                <TextField setter={this.setCVC} title={"CVC"} restriction={true} cvc={true}/>
+                            </div>
+                            <button  style={{borderRadius:"10px", width:"fit-content",right:0}} className="mdc-button mdc-button--raised mdc-button--leading">
+                                <span className="mdc-button__ripple"></span>
+                                <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
+                                <span className="mdc-button__label">payment</span>
+                            </button>
 
-                                    <div className="col-md-6 col-sm-6 mb-7">
-                                        <div className="icon-7x mb-4">
-                                            <i className="ti-timer"></i>
-                                        </div>
-                                        <h3 className="h5 mb-0">Launch Quickly</h3>
-                                    </div>
 
-                                    <div className="col-md-6 col-sm-6 mb-7">
-                                        <div className="micon-7x mb-4">
-                                            <i className="ti-brush-alt"></i>
-                                        </div>
-                                        <h3 className="h5 mb-0">Stylish Design</h3>
-                                    </div>
-
-                                    <div className="col-md-6 col-sm-6 mb-7">
-                                        <div className="icon-7x mb-4">
-                                            <i className="ti-book"></i>
-                                        </div>
-                                        <h3 className="h5 mb-0">Well Documented</h3>
-                                    </div>
-
-                                    <div className="col-md-6 col-sm-6 mb-7">
-                                        <div className="icon-7x mb-4">
-                                            <i className="ti-layers"></i>
-                                        </div>
-                                        <h3 className="h5 mb-0">Multiple Styles</h3>
-                                    </div>
-
-                                    <div className="col-md-6 col-sm-6 mb-7 mb-sm-0">
-                                        <div className="icon-7x mb-4">
-                                            <i className="ti-settings"></i>
-                                        </div>
-                                        <h3 className="h5 mb-0">Fully Customizable</h3>
-                                    </div>
-
-                                    <div className="col-md-6 col-sm-6">
-                                        <div className="icon-7x mb-4">
-                                            <i className="ti-headphone-alt"></i>
-                                        </div>
-                                        <h3 className="h5 mb-0">Friendly Support</h3>
-                                    </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                </div>
-            </div>
+
         )
     }
 }

@@ -1,15 +1,9 @@
 import React, {useEffect, useRef} from 'react';
 import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
-import {AnyAaaaRecord} from "dns";
-import {MDCTextField, MDCTextFieldIcon} from '@material/textfield';
-import {MDCMenu} from "@material/menu";
-import DropdownChoice from "./DropdownChoice";
-import CalendarChoice from "./CalendarChoice";
-import NumbersChoice from "./NumbersChoice";
-import {data} from "autoprefixer";
+
 import TextField from "./TextField";
-import {AsyncLocalStorage} from "async_hooks";
+
 
 
 
@@ -21,6 +15,7 @@ class PopConnexion extends React.Component<any, any>{
 
     InscriptionButton= async () =>{
         try {
+
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
@@ -47,6 +42,7 @@ class PopConnexion extends React.Component<any, any>{
 
             if(error === undefined){
                 alert("Vous êtes connectés !")
+                this.props.connected();
             }else{
                 alert(error[0].errorType)
             }

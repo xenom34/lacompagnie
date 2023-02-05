@@ -1,16 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
-import {AnyAaaaRecord} from "dns";
-import {MDCTextField, MDCTextFieldIcon} from '@material/textfield';
-import {MDCMenu} from "@material/menu";
+
 import DropdownChoice from "./DropdownChoice";
 import CalendarChoice from "./CalendarChoice";
 import NumbersChoice from "./NumbersChoice";
-import {data} from "autoprefixer";
+
 import ParentVols from "./ParentVols";
-import {forEach} from "lodash";
-import VolAlleSimple from "./VolAlleSimple";
+
 
 class Search extends React.Component<any, any>{
     private menu: any;
@@ -24,17 +21,14 @@ class Search extends React.Component<any, any>{
     private test: any = "";
     static conteur = 0;
     private tableau = new Array<Object>;
-
     state = {isLoading : true}
 
-
-
     Souffrance = async (event: any) => {
+
         const {isLoading} = this.state;
         this.setState({isLoading : true})
 
             try {
-
                 var requestOptions = {
                     method: 'GET',
                     headers: {'Content-Type': 'application/json'}
@@ -58,18 +52,14 @@ class Search extends React.Component<any, any>{
                     .then(response => response.json())
                     .then(result => {
                         this.test = result;
-
                         this.setState({isLoading: false})
-
 
                     })
                     .catch(error => console.log('error', error));
 
-
             } catch (e) {
                 console.log(e)
             }
-
     }
 
     ClickInscriptionButton=async () => {
@@ -78,6 +68,7 @@ class Search extends React.Component<any, any>{
 
     InscriptionButton= async () =>{
         try {
+
 
             var requestOptions = {
                 method: 'GET',
@@ -199,7 +190,10 @@ class Search extends React.Component<any, any>{
                 </button>
 
                 {isLoading ? <div></div> : <ParentVols desolation={this.Souffrance} lucile={this.test === undefined ? {}:this.test} token={this.test.askToken} />}
-
+                <a href="#features"
+                   className="btn btn-soft-white scrollto d-block d-md-inline-block w-100 w-md-auto ml-md-3">
+                   paiement ➡️
+                </a>
             </div>
         );
     }

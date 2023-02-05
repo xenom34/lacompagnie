@@ -1,22 +1,26 @@
 import React from 'react';
-import photoOne from "../img/photo-1.jpg"
-import video from "../img/bg.mp4";
-import Search from "./Search";
 import About from "./About";
-import BoxHead from "./BoxHead";
 import WebsiteAccueil from "./Accueil";
-
-import Solutions from "./Solutions";
+import Information from "./Information";
+import Features from "./Features";
+import {useNavigate} from "react-router-dom";
 
 interface WebsiteSliderProps {}
 
 const WebsiteSlider: React.FC<WebsiteSliderProps> = () => {
+    let Change = () => {
+        let history = useNavigate();
+        history("#features")
+    }
+
     return (
         <div className="website-slider">
             <div className="website-slider-inner">
-                <WebsiteAccueil/>
+                <WebsiteAccueil change={Change}/>
                 <About/>
-                <Solutions/>
+                <Information/>
+                <Features/>
+
             </div>
         </div>
     );

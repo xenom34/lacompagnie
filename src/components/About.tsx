@@ -3,11 +3,15 @@ import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
 import PopConnexion from "./PopConnexion";
 import PopInscription from "./PopInscription";
-
+import Profil from "./Profil";
 
 
 class About extends React.Component<any, any> {
-    state = {isLoading: true}
+    state = {isLoading: true, isNotConnect: true}
+
+    isConnected = () => {
+        this.setState({isNotConnect: false})
+    }
 
     ClickInscriptionButton = () => {
         this.setState({isLoading: true})
@@ -19,7 +23,7 @@ class About extends React.Component<any, any> {
 
     render() {
         const {isLoading} = this.state;
-
+        const {isNotConnect} = this.state;
         return (
 
             <div id="about" className="website-slider-item" data-navbar-slide="navbar-dark">
@@ -33,23 +37,33 @@ class About extends React.Component<any, any> {
                                     <div
                                         className="nav nav-pills-modern nav-pills-modern-soft-dark justify-content-center rounded"
                                         id="about-tab" role="tablist">
-                                        {isLoading ?
-                                            <div>
-                                            <a onClick={this.ClickConnexionButton} className="nav-link active" id="tab-forward-tab"
-                                               data-toggle="pill" href="#tab-forward" role="tab"
-                                               aria-controls="tab-forward"
-                                               aria-selected="true"> Connexion </a>
-                                            <PopConnexion/>
+                                        {isNotConnect ? <div>
+                                                {isLoading ?
+                                                    <div>
+                                                        <a onClick={this.ClickConnexionButton} className="nav-link active"
+                                                           id="tab-forward-tab"
+                                                           data-toggle="pill" href="#tab-forward" role="tab"
+                                                           aria-controls="tab-forward"
+                                                           aria-selected="true"> Connexion </a>
+                                                        <PopConnexion connected={this.isConnected}/>
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <a onClick={this.ClickInscriptionButton}
+                                                           className="nav-link" id="tab-together-tab" data-toggle="pill"
+                                                           href="#tab-together"
+                                                           role="tab" aria-controls="tab-together"
+                                                           aria-selected="false"> Inscription </a>
+                                                        <PopInscription/>
+                                                    </div>
+
+
+                                                }
                                             </div>
                                             :
-                                            <div>
-                                            <a onClick={this.ClickInscriptionButton}
-                                                className="nav-link" id="tab-together-tab" data-toggle="pill"
-                                                href="#tab-together"
-                                                role="tab" aria-controls="tab-together"
-                                                aria-selected="false"> Inscription </a>
-                                                <PopInscription/>
-                                            </div>
+
+                                            <Profil/>
+
                                         }
                                     </div>
 
@@ -60,8 +74,8 @@ class About extends React.Component<any, any> {
                 </div>
             </div>);
 
-         }
     }
+}
 
 
 export default About;

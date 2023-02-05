@@ -82,7 +82,7 @@ class VolAlleSimple extends React.Component<any, any>{
                         <span className="mdc-list-item__primary-text">{this.props.prixBillet} €</span>
 
                     </div>
-                    <button onClick={this.solitude} id={"button_Reserve"} className="mdc-button mdc-button--raised" >
+                    <button  onClick={this.solitude} id={"button_Reserve"} className="mdc-button mdc-button--raised" >
                         Réserver
                     </button>
 

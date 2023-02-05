@@ -1,13 +1,21 @@
 import video from "../img/bg.mp4";
 import BoxHead from "./BoxHead";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import App from "./App";
 
 
 
-interface WebsiteSliderProps {}
+interface WebsiteSliderProps {
+    change : () => void;
+}
 
-const WebsiteAccueil: React.FC<WebsiteSliderProps> = () => {
+const WebsiteAccueil: React.FC<WebsiteSliderProps> = ({change}) => {
+    let ChangementDeFenetre = () => {
+        let history = useNavigate();
+        history("#features")
+    }
+
     return (
         <div id="home" className="website-slider-item" data-navbar-slide="navbar-dark">
             <div className="overlay overlay-global">
@@ -33,7 +41,7 @@ const WebsiteAccueil: React.FC<WebsiteSliderProps> = () => {
                                 Besoin de partir très loin ? Paisible sur terre et même dans les nuages, Vous cliquez
                                 vous volez !
                             </p>
-                            <button type="button"
+                            <button onClick={change}  type="button"
                                     className="btn btn-white d-block d-md-inline-block w-100 w-md-auto mb-3 mb-md-0"
                                     data-toggle="modal" data-target="#subscribeModal">
                                 Information

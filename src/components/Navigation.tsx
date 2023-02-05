@@ -46,9 +46,10 @@ class Navigation extends React.Component<any, any> {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link scrollto" href="#information">Information</a>
+
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link scrollto" href="#solutions">Paramètre</a>
+                            <a className="nav-link scrollto" href="#features">features</a>
                         </li>
 
 
