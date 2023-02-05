@@ -128,7 +128,7 @@ class DropdownChoice extends React.Component<any, any>{
         }
     }
     OnChange = (event:any) =>{
-        console.log(event.target.value)
+  
         this.props.setter(event.target.value)
     }
 

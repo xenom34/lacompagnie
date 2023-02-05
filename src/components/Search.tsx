@@ -12,9 +12,6 @@ import ParentVols from "./ParentVols";
 import {forEach} from "lodash";
 import VolAlleSimple from "./VolAlleSimple";
 
-
-//import reactimg from "../img/reactimg.jpeg"
-
 class Search extends React.Component<any, any>{
     private menu: any;
     private cabines: Array<Object> =[];
@@ -24,19 +21,59 @@ class Search extends React.Component<any, any>{
     private R : any;
     private P: any;
     private C : any;
-    private test: any;
+    private test: any = "";
+    static conteur = 0;
+    private tableau = new Array<Object>;
 
     state = {isLoading : true}
 
-    ClickInscriptionButton=async () => {
-        await this.InscriptionButton();
+
+
+    Souffrance = async (event: any) => {
+        const {isLoading} = this.state;
+        this.setState({isLoading : true})
+
+            try {
+
+                var requestOptions = {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
+                };
+
+                if (this.C === "Economy") {
+                    this.C = "e";
+                } else if (this.C === "Premium Economy") {
+                    this.C = "p";
+
+                } else if (this.C === "Business") {
+                    this.C = "b";
+
+                } else {
+                    this.C = "f";
+
+                }
+                let query = "https://api.altair-studios.fr:4318/compagnie/reqFlights?departureDate=" + this.R + "&departureAirport=" + this.AA + "&arrivalAirport=" + this.AD + "&nbPassengers=" + this.P + "&cabin=" + this.C + "&askToken" + this.test.askToken;
+
+                const response = await fetch(query, requestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        this.test = result;
+
+                        this.setState({isLoading: false})
+
+
+                    })
+                    .catch(error => console.log('error', error));
+
+
+            } catch (e) {
+                console.log(e)
+            }
+
     }
 
-    saveResult = (event:any) =>{
-        this.test = event;
-        console.log(event)
-        console.log("test " + this.test)
-        this.setState({isLoading:false})
+    ClickInscriptionButton=async () => {
+        await this.InscriptionButton();
     }
 
     InscriptionButton= async () =>{
@@ -47,9 +84,9 @@ class Search extends React.Component<any, any>{
                 headers: {'Content-Type': 'application/json'}
             };
 
-            if(this.C==="Economy"){
+            if(this.C === "Economy"){
                 this.C = "e";
-            }else if(this.C==="Premium Economy"){
+            }else if(this.C ==="Premium Economy"){
                 this.C = "p";
 
             }else if(this.C==="Business"){
@@ -59,35 +96,58 @@ class Search extends React.Component<any, any>{
                 this.C="f";
 
             }
-
-
             let query = "https://api.altair-studios.fr:4318/compagnie/reqFlights?departureDate="+ this.DD +"&departureAirport="+this.AD+"&arrivalAirport="+this.AA + "&nbPassengers="+this.P+"&cabin="+this.C;
-            console.log(query);
+
             const response = await fetch(query,requestOptions)
                 .then(response => response.json())
-                .then(result => {this.test = result; this.setState({isLoading:false})} )
+                .then(result => {this.test = result; this.setState({isLoading:false} );} )
                 .catch(error => console.log('error', error));
-
-            //const {status, error, auth_token} = await response.json();
-
-
-
-            //response.headers.forEach((e) => console.log(e))
-
-            //localStorage.setItem('token',token)
-            //localStorage.getItem('token')
-
-           /* if(error === undefined){
-                alert("Vous êtes connectés !")
-            }else{
-                alert(error[0].errorType)
-            }*/
 
 
         } catch (e) {
             console.log(e)
         }
     }
+
+
+
+    EnvoieRéservationAPI= async (event:any) =>{
+
+        try {
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                "flight": this.props.flight,
+                "passengers": this.props.nbPassenger,
+                "class": this.props.classeBillet
+
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw
+
+            };
+
+            let query = "https://api.altair-studios.fr:4318/compagnie/trip/"+ this.test.askToken +"/submitBooking";
+            const response = await fetch(query,requestOptions)
+            this.props.folie(response);
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
+    setAskToken = (changes : any) => {
+        let amTheToken = changes;
+
+        return this.EnvoieRéservationAPI(amTheToken);
+    }
+
 
     setAD = (changes : any) => {
         this.AD = changes;
@@ -138,7 +198,7 @@ class Search extends React.Component<any, any>{
                     <span onClick={this.ClickInscriptionButton} className="mdc-button__label">Rechercher un vol</span>
                 </button>
 
-                {isLoading ? <div></div> : <ParentVols lucile={this.test} AlleeSimple={true}/>}
+                {isLoading ? <div></div> : <ParentVols desolation={this.Souffrance} lucile={this.test === undefined ? {}:this.test} token={this.test.askToken} />}
 
             </div>
         );

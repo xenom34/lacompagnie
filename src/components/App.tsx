@@ -4,11 +4,10 @@ import 'reactjs-popup/dist/index.css';
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 import Slider_Items_Home from "./Slider Item_Home";
-import BoxHead from  "./BoxHead";
-import About from "./About";
+
 import Slide from "./Slide";
-import VolAlleSimple from "./VolAlleSimple";
-import ParentVols from "./ParentVols";
+
+
 
 
 class App extends React.Component<any, any>{
@@ -26,6 +25,7 @@ class App extends React.Component<any, any>{
                         <Footer/>
 
                     </div>
+
 
                 );
             }

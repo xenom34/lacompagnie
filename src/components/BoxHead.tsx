@@ -13,10 +13,15 @@ import About from "./About";
 
 class BoxHead extends React.Component<any, any>{
 
+
     render() {
+
         return (
             <div className="Recherche">
-                <Search/>
+
+                     <Search/>
+
+
 
             </div>
 

@@ -36,11 +36,11 @@ const WebsiteAccueil: React.FC<WebsiteSliderProps> = () => {
                             <button type="button"
                                     className="btn btn-white d-block d-md-inline-block w-100 w-md-auto mb-3 mb-md-0"
                                     data-toggle="modal" data-target="#subscribeModal">
-                                Connexion
+                                Information
                             </button>
                             <a href="#about"
                                className="btn btn-soft-white scrollto d-block d-md-inline-block w-100 w-md-auto ml-md-3">
-                                Achetez
+                                Profil
                             </a>
 
                         </div>

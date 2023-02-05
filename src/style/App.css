@@ -5,8 +5,11 @@
   display: grid;
   padding : 30px 10px;
   grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 5fr ;
-  grid-template-raw: 2fr 2fr 2fr 2fr 2fr 2fr 5fr ;
+  grid-template-raw: 2fr 2fr 2fr 2fr 2fr 2fr  ;
   gap: 10px 2em;
+}
+#AlleSimpleTitle{
+  color:black;
 }
 
 #AlleSimple:first-child{
