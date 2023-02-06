@@ -57,7 +57,7 @@ class TextField extends React.Component<any, any>{
       </span>
       <span className="mdc-notched-outline__trailing"></span>
     </span>
-                    <input onFocus={this.onChange} onChange={this.onChange} value={this.value}  type={this.props.MDP ===  true ? "password" : "string"} className="mdc-text-field__input"  aria-labelledby="my-label-id" />
+                    <input onFocus={this.onChange} onChange={this.onChange} defaultValue={this.props.valeur === undefined ? "" : this.props.valeur}  type={this.props.MDP ===  true ? "password" : "string"} className="mdc-text-field__input"  aria-labelledby="my-label-id" />
                 </label>
                 <div className="mdc-text-field-helper-line">
                     <div id={'helperText'+ this.id} className="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg">

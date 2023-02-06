@@ -4,13 +4,16 @@ import 'reactjs-popup/dist/index.css';
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 import Slider_Items_Home from "./Slider Item_Home";
-
 import Slide from "./Slide";
+import Global_Overlay from "./Global_Overlay";
+
 
 class App extends React.Component<any, any> {
     render() {
         return (
             <div style={{color: "color", opacity: 0.7}} className="App">
+
+                <Global_Overlay/>
                 <Navigation/>
                 <Slider_Items_Home/>
                 <Slide/>

@@ -44,7 +44,7 @@ class Choix extends React.Component<any, any> {
             const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/register", requestOptions)
             const {status, error} = await response.json();
             if (error === undefined) {
-                alert("Vous êtes inscrit !")
+                alert("Vous êtes inscrit ! Vous pouvez vous connecter désormais ")
             } else {
                 alert(error[0].errorType)
             }
@@ -89,7 +89,7 @@ class Choix extends React.Component<any, any> {
     render = () => {
         return (
             <div className="mdc-card">
-                <h1 id={"searchTitle"}>✈️ Inscription</h1>
+                <h1 id={"searchTitle"}></h1>
                 <div className={"labelSearch container"}>
                     <TextField setter={this.setName} title={"Nom"} id={"Nom"}/>
                     <TextField setter={this.setFname} title={"Prénom"}/>

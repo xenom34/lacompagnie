@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 #AlleSimple{
   display: grid;
@@ -10,6 +11,12 @@
 }
 #AlleSimpleTitle{
   color:black;
+}
+
+#features {
+  display: grid;
+  grid-template-rows: 3fr 3fr 3fr 3fr 3fr;
+
 }
 
 #AlleSimple:first-child{
@@ -24,6 +31,13 @@
   display: grid;
   align-items: flex-start;
   text-align: left ;
+
+  color: rebeccapurple;
+}
+
+#about {
+
+  color : black;
 }
 
 

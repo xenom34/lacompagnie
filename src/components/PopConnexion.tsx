@@ -2,11 +2,15 @@ import React, {useEffect, useRef} from 'react';
 import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
 import TextField from "./TextField";
+import Navigation from "./Navigation";
+import {UNSAFE_NavigationContext} from "react-router-dom";
 
 class PopConnexion extends React.Component<any, any> {
     private menu: any;
     private AM: any;
     private Mdp: any;
+    private auth_token: any;
+    private id: any;
 
     InscriptionButton = async () => {
         try {
@@ -23,24 +27,31 @@ class PopConnexion extends React.Component<any, any> {
                 method: 'POST',
                 headers: myHeaders,
                 body: raw
-
             };
 
             const response = await fetch("https://api.altair-studios.fr:4318/compagnie/auth/login", requestOptions)
-            const {status, error, auth_token} = await response.json();
-            console.log(auth_token)
+            const {status, error, auth_token,_id} = await response.json();
+            //const value = response.headers.get("auth_token");
+            this.id = _id
+            this.auth_token = auth_token;
+            console.log(raw);
 
             if (error === undefined) {
                 alert("Vous êtes connectés !")
-                this.props.connected();
+                Navigation.connected = true;
+                this.IsConnected(this.auth_token)
+
             } else {
                 alert(error[0].errorType)
             }
 
-
         } catch (e) {
             console.log(e)
         }
+    }
+
+    IsConnected = (event:any) => {
+        this.props.connected(this.auth_token, this.id);
     }
 
     setAm = (changes: any) => {
@@ -60,7 +71,7 @@ class PopConnexion extends React.Component<any, any> {
 
         return (
             <div id={"Connexion"} className="mdc-card">
-                <h1 id={"searchTitle"}>✈️ Connexion</h1>
+                <h1 id={"searchTitle"}></h1>
 
                 <div className={"labelSearch container"}>
                     <TextField setter={this.setAm} title={"Adresse mail"} restriction={true}/>
@@ -74,7 +85,7 @@ class PopConnexion extends React.Component<any, any> {
                             className="mdc-button mdc-button--raised mdc-button--leading">
                         <span className="mdc-button__ripple"></span>
                         <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
-                        <span className="mdc-button__label">Validation</span>
+                        <span  className="mdc-button__label">Validation</span>
                     </button>
                 </div>
             </div>

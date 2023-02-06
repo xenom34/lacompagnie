@@ -185,7 +185,7 @@ class Search extends React.Component<any, any>{
                     <span onClick={this.ClickInscriptionButton} className="mdc-button__label">Rechercher un vol</span>
                 </button>
 
-                {isLoading ? <div></div> : <ParentVols desolation={this.AppelParent} requeteSearch={this.requeteAPI === undefined ? {}:this.requeteAPI} token={this.requeteAPI.askToken} />}
+                {isLoading ? <div></div> : <ParentVols AppelParent={this.AppelParent} requeteSearch={this.requeteAPI === undefined ? {}:this.requeteAPI} token={this.requeteAPI.askToken} />}
                 <a href="#features"
                    className="btn btn-soft-white scrollto d-block d-md-inline-block w-100 w-md-auto ml-md-3">
                    paiement ➡️

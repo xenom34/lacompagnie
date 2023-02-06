@@ -5,6 +5,7 @@ import 'reactjs-popup/dist/index.css';
 
 class Navigation extends React.Component<any, any> {
     state = {isLoading: true}
+    static connected = false;
 
     ClickInscriptionButton = () => {
         this.setState({isLoading: true})
@@ -53,7 +54,7 @@ class Navigation extends React.Component<any, any> {
 
 
                     </ul>
-                    {isLoading ?
+                    {Navigation.connected ?
                         <a onClick={this.ClickConnexionButton}
                            className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
                            rel="noopener nofollow" data-on-navbar-light="btn-primary"
@@ -62,7 +63,7 @@ class Navigation extends React.Component<any, any> {
                         <a onClick={this.ClickInscriptionButton}
                            className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
                            rel="noopener nofollow" data-on-navbar-light="btn-primary"
-                           data-on-navbar-dark="btn-white">Inscription</a>
+                           data-on-navbar-dark="btn-white">Deconnexion</a>
                     }
                 </div>
             </nav>

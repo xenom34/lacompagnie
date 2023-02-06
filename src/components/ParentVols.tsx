@@ -6,7 +6,7 @@ import Search from "./Search";
 class ParentVols extends React.Component<any, any> {
 
     AppelParent = (event: any) => {
-        let appelParent = this.props.AppelParent()
+        let appelParent = this.props.AppelParent(event)
         return appelParent
     }
 
@@ -25,14 +25,14 @@ class ParentVols extends React.Component<any, any> {
                 }
                 {
                     this.props.requeteSearch.request.map((vol: any, index: any) =>
-                        <VolAlleSimple folie={this.AppelParent} key={index} flight={vol._id}
+                        <VolAlleSimple AppelParent={this.AppelParent} key={index} flight={vol._id}
                                        depart={vol.airport_departure} arrive={vol.airport_arrival}
                                        dateDépart={vol.date_departure} dateArrivee={vol.date_arrival}
                                        heureDepart={vol.time_departure}
                                        heureArrivee={vol.time_arrival}
                                        duree={vol.duration} modeleAvion={vol.aircraft}
                                        prixBillet={vol.price} nbPassenger={this.props.nbPassenger}
-                                       classeBillet={this.props.classeBille} Token={this.props.lucile.askToken}>
+                                       classeBillet={this.props.classeBille} Token={this.props.requeteSearch.askToken}>
 
                         </VolAlleSimple>
                     )}

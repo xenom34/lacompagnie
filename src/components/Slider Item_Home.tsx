@@ -16,7 +16,7 @@ const WebsiteSlider: React.FC<WebsiteSliderProps> = () => {
     return (
         <div className="website-slider">
             <div className="website-slider-inner">
-                <WebsiteAccueil change={Change}/>
+                <WebsiteAccueil/>
                 <About/>
                 <Information/>
                 <Features/>

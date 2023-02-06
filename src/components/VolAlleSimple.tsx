@@ -22,7 +22,7 @@ class VolAlleSimple extends React.Component<any, any>{
 
     AppelParent = (event:any) => {
         Search.conteur ++;
-        let propsSolitude = this.props.AppelParent();
+        let propsAppelParent = this.props.AppelParent(event);
 
 
     }
