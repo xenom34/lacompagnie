@@ -1,0 +1,9 @@
+name: Docker Compose (build & up)
+on: [push, pull_request]
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker-compose up the docker app
+        run: echo $'BDD_URL="${{ secrets.BDD_URL }}"\nAPI_PY_URL="${{ secrets.API_PY_URL }}"' > website/.env && docker-compose up -d
