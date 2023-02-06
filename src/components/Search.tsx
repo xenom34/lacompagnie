@@ -1,13 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
-
 import DropdownChoice from "./DropdownChoice";
 import CalendarChoice from "./CalendarChoice";
 import NumbersChoice from "./NumbersChoice";
-
 import ParentVols from "./ParentVols";
-
 
 class Search extends React.Component<any, any>{
     private menu: any;
@@ -18,13 +15,12 @@ class Search extends React.Component<any, any>{
     private R : any;
     private P: any;
     private C : any;
-    private test: any = "";
+    private requeteAPI: any = "";
     static conteur = 0;
     private tableau = new Array<Object>;
     state = {isLoading : true}
 
-    Souffrance = async (event: any) => {
-
+    AppelParent = async (event: any) => {
         const {isLoading} = this.state;
         this.setState({isLoading : true})
 
@@ -46,12 +42,12 @@ class Search extends React.Component<any, any>{
                     this.C = "f";
 
                 }
-                let query = "https://api.altair-studios.fr:4318/compagnie/reqFlights?departureDate=" + this.R + "&departureAirport=" + this.AA + "&arrivalAirport=" + this.AD + "&nbPassengers=" + this.P + "&cabin=" + this.C + "&askToken" + this.test.askToken;
+                let query = "https://api.altair-studios.fr:4318/compagnie/reqFlights?departureDate=" + this.R + "&departureAirport=" + this.AA + "&arrivalAirport=" + this.AD + "&nbPassengers=" + this.P + "&cabin=" + this.C + "&askToken" + this.requeteAPI.askToken;
 
                 const response = await fetch(query, requestOptions)
                     .then(response => response.json())
                     .then(result => {
-                        this.test = result;
+                        this.requeteAPI = result;
                         this.setState({isLoading: false})
 
                     })
@@ -91,7 +87,7 @@ class Search extends React.Component<any, any>{
 
             const response = await fetch(query,requestOptions)
                 .then(response => response.json())
-                .then(result => {this.test = result; this.setState({isLoading:false} );} )
+                .then(result => {this.requeteAPI = result; this.setState({isLoading:false} );} )
                 .catch(error => console.log('error', error));
 
 
@@ -123,7 +119,7 @@ class Search extends React.Component<any, any>{
 
             };
 
-            let query = "https://api.altair-studios.fr:4318/compagnie/trip/"+ this.test.askToken +"/submitBooking";
+            let query = "https://api.altair-studios.fr:4318/compagnie/trip/"+ this.requeteAPI.askToken +"/submitBooking";
             const response = await fetch(query,requestOptions)
             this.props.folie(response);
 
@@ -189,7 +185,7 @@ class Search extends React.Component<any, any>{
                     <span onClick={this.ClickInscriptionButton} className="mdc-button__label">Rechercher un vol</span>
                 </button>
 
-                {isLoading ? <div></div> : <ParentVols desolation={this.Souffrance} lucile={this.test === undefined ? {}:this.test} token={this.test.askToken} />}
+                {isLoading ? <div></div> : <ParentVols desolation={this.AppelParent} requeteSearch={this.requeteAPI === undefined ? {}:this.requeteAPI} token={this.requeteAPI.askToken} />}
                 <a href="#features"
                    className="btn btn-soft-white scrollto d-block d-md-inline-block w-100 w-md-auto ml-md-3">
                    paiement ➡️

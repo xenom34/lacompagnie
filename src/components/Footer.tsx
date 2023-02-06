@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
                 <div className="row">
                     <div className="col-lg-10 mx-auto text-center">
                         <ul className="list-inline mb-8">
-
+                            On vous souhaite bon voyage !
                         </ul>
 
                     </div>

@@ -20,6 +20,11 @@
   align-self: center;
 }
 
+#profil {
+  display: grid;
+  align-items: flex-start;
+  text-align: left ;
+}
 
 
 .App-logo {

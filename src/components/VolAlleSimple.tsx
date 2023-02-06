@@ -20,9 +20,9 @@ class VolAlleSimple extends React.Component<any, any>{
         return Math.trunc(heure) + "H" +  minute
     }
 
-    solitude = (event:any) => {
+    AppelParent = (event:any) => {
         Search.conteur ++;
-        let propsSolitude = this.props.folie();
+        let propsSolitude = this.props.AppelParent();
 
 
     }
@@ -59,8 +59,6 @@ class VolAlleSimple extends React.Component<any, any>{
                     </div>
                     <div className="mdc-card 4">
 
-
-
                 <span className="mdc-list-item__text">
           <span className="mdc-list-item__primary-text">Départ: </span>
             <span className="mdc-list-item__secondary-text">{this.conversionMinute(this.props.heureDepart)}</span>
@@ -82,7 +80,7 @@ class VolAlleSimple extends React.Component<any, any>{
                         <span className="mdc-list-item__primary-text">{this.props.prixBillet} €</span>
 
                     </div>
-                    <button  onClick={this.solitude} id={"button_Reserve"} className="mdc-button mdc-button--raised" >
+                    <button  onClick={this.AppelParent} id={"button_Reserve"} className="mdc-button mdc-button--raised" >
                         Réserver
                     </button>
 
@@ -90,8 +88,6 @@ class VolAlleSimple extends React.Component<any, any>{
             </div>
 
         );
-
-
     }
 
 }

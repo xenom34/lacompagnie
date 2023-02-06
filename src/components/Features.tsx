@@ -11,10 +11,7 @@ class Features extends React.Component<any, any>{
 
     constructor(props:any) {
         super(props);
-        //this.cabines = ["Economy","Premium Economy","Business","Première"];
-
     }
-
 
     setCard = (changes : any) => {
         this.card = changes;
@@ -53,8 +50,6 @@ class Features extends React.Component<any, any>{
                                 <i className="material-icons mdc-button__icon" aria-hidden="true"></i>
                                 <span className="mdc-button__label">payment</span>
                             </button>
-
-
 
                                 </div>
                             </div>

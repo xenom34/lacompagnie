@@ -16,7 +16,6 @@ class Navigation extends React.Component<any, any> {
 
     render() {
         const {isLoading} = this.state;
-
         return (
             <nav id="siteNavbar"
                  className="site-navbar site-navbar-transparent navbar navbar-expand-lg navbar-dark bg-white shadow-light-lg site-navbar-absolute py-2"
@@ -55,21 +54,21 @@ class Navigation extends React.Component<any, any> {
 
                     </ul>
                     {isLoading ?
-                        <a onClick={this.ClickConnexionButton} className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
+                        <a onClick={this.ClickConnexionButton}
+                           className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
                            rel="noopener nofollow" data-on-navbar-light="btn-primary"
                            data-on-navbar-dark="btn-white">Connexion</a>
                         :
-                        <a onClick={this.ClickInscriptionButton} className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
+                        <a onClick={this.ClickInscriptionButton}
+                           className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
                            rel="noopener nofollow" data-on-navbar-light="btn-primary"
                            data-on-navbar-dark="btn-white">Inscription</a>
                     }
-
                 </div>
             </nav>
-
         )
-
     }
 }
-    export default Navigation;
+
+export default Navigation;
 
