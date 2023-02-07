@@ -1,22 +1,23 @@
 import React from "react";
-import Logo from '../img/LogoCompagnie.png';
+import Logo from '../img/dernierlogo.png';
 import '../style/App.css';
 import 'reactjs-popup/dist/index.css';
 
 class Navigation extends React.Component<any, any> {
-    state = {isLoading: true}
-    static connected = false;
+    state = { Notconnected : true}
 
-    ClickInscriptionButton = () => {
-        this.setState({isLoading: true})
+    ChangeState = () => {
+        this.setState({Notconnected: true})
+        this.props.oToken();
     }
-    ClickConnexionButton = () => {
-        this.setState({isLoading: false})
+    NavConnect = (event:any) => {
+        this.setState({Notconnected: false})
 
     }
+
 
     render() {
-        const {isLoading} = this.state;
+        const {Notconnected} = this.state;
         return (
             <nav id="siteNavbar"
                  className="site-navbar site-navbar-transparent navbar navbar-expand-lg navbar-dark bg-white shadow-light-lg site-navbar-absolute py-2"
@@ -54,13 +55,13 @@ class Navigation extends React.Component<any, any> {
 
 
                     </ul>
-                    {Navigation.connected ?
-                        <a onClick={this.ClickConnexionButton}
+                    {Notconnected ?
+                        <a
                            className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
                            rel="noopener nofollow" data-on-navbar-light="btn-primary"
                            data-on-navbar-dark="btn-white">Connexion</a>
                         :
-                        <a onClick={this.ClickInscriptionButton}
+                        <a  onClick={this.ChangeState}
                            className="btn btn-white d-block d-lg-inline-block ml-lg-3" target="_blank"
                            rel="noopener nofollow" data-on-navbar-light="btn-primary"
                            data-on-navbar-dark="btn-white">Deconnexion</a>

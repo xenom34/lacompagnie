@@ -13,8 +13,8 @@ class Profil extends React.Component<any, any> {
 
     render() {
         const {isLoading} = this.state;
-        console.log("isLoading :"+isLoading)
-        console.log("FNAME :"+this.props.fName)
+        console.log("isLoading :" + isLoading)
+        console.log("FNAME :" + this.props.fName)
 
         return (
 

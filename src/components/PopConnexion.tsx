@@ -38,7 +38,6 @@ class PopConnexion extends React.Component<any, any> {
 
             if (error === undefined) {
                 alert("Vous êtes connectés !")
-                Navigation.connected = true;
                 this.IsConnected(this.auth_token)
 
             } else {

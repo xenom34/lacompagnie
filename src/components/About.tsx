@@ -41,8 +41,8 @@ class About extends React.Component<any, any> {
         this.mail = email
 
         if (error === undefined) {
-            alert("VOS PARAMETRES")
             this.setState({isNotConnect: false})
+            this.props.NavConnect();
 
         } else {
             alert(error[0].errorType)
@@ -55,6 +55,11 @@ class About extends React.Component<any, any> {
     }
     ClickConnexionButton = () => {
         this.setState({isLoading: false})
+
+    }
+
+    OubliToken = () => {
+        this.setState({isNotConnect: true})
 
     }
 

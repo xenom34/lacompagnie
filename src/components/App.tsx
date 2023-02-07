@@ -9,14 +9,31 @@ import Global_Overlay from "./Global_Overlay";
 
 
 class App extends React.Component<any, any> {
+    private Slider_Items: any;
+    private Navigation: any;
+
+    ChangeState = () => {
+        let changeState = event
+
+    }
+
+    Change = () => {
+        this.Slider_Items.Change();
+    }
+
+    NavConnect = () => {
+        this.Navigation.NavConnect()
+
+    }
+
     render() {
         return (
             <div style={{color: "color", opacity: 0.7}} className="App">
 
                 <Global_Overlay/>
-                <Navigation/>
-                <Slider_Items_Home/>
-                <Slide/>
+                <Navigation ref={(child) => (this.Navigation = child) }NavConnect={this.NavConnect} oToken={this.Change} changeState={this.ChangeState}/>
+                <Slider_Items_Home NavConnect={this.NavConnect}ref={(child) => (this.Slider_Items = child) } changeState={this.ChangeState}/>
+
                 <Footer/>
             </div>
         );
